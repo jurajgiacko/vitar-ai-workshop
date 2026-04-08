@@ -780,116 +780,198 @@
 
         <div class="info-box" style="margin-bottom: 24px;">
             <span>📌</span>
-            <div>Tato sekce bude <strong>průběžně růst</strong>. Po workshopu sem přidáme příklady z vašich otázek a reálné use cases z práce.</div>
+            <div>Konkrétní workflow příklady — jak AI nástroje propojit do reálného procesu. Sekce bude průběžně růst.</div>
         </div>
 
+        <!-- MARKETING -->
         <div class="accordion">
-            <div class="acc-item">
-                <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
-                    <div class="acc-icon" style="background:var(--accent-soft);color:var(--accent)">📦</div>
-                    <div class="acc-info">
-                        <div class="acc-title">Produktový manažér</div>
-                        <div class="acc-sub">Produktové karty, portfólio, analýzy, regulatorní check</div>
-                    </div>
-                    <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </div>
-                <div class="acc-body">
-                    <div class="acc-body-inner">
-                        <ul>
-                            <li><strong>Produktová karta pro e-shop</strong> — HTML s popisem, benefity, nutričními hodnotami, SEO</li>
-                            <li><strong>Porovnávací tabulka</strong> — Váš produkt vs. konkurence</li>
-                            <li><strong>Portfolio přehled</strong> — Interaktivní přehled celé produktové řady</li>
-                            <li><strong>Briefing pro retail</strong> — Prezentace pro lékárnu / retail řetězec</li>
-                            <li><strong>Regulatorní check</strong> — Kontrola claimů, soulad s legislativou</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
             <div class="acc-item">
                 <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
                     <div class="acc-icon" style="background:var(--purple-soft);color:var(--purple)">📢</div>
                     <div class="acc-info">
                         <div class="acc-title">Marketing</div>
-                        <div class="acc-sub">Kampaně, landing pages, social media, emaily, blog</div>
+                        <div class="acc-sub">Research, kampaně, content, emaily — krok po kroku</div>
                     </div>
                     <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </div>
                 <div class="acc-body">
                     <div class="acc-body-inner">
+                        <p><strong>1. Marketingový research → kampaň</strong></p>
                         <ul>
-                            <li><strong>Kampaňová landing page</strong> — Kompletní stránka s CTA, countdown, responsivní</li>
-                            <li><strong>Email kampaň</strong> — Welcome, abandoned cart, post-purchase série</li>
-                            <li><strong>Social media batch</strong> — 10+ postů naráz pro IG/FB/LinkedIn</li>
-                            <li><strong>Blog článek</strong> — SEO optimalizovaný pro vitar.cz</li>
-                            <li><strong>Newsletter template</strong> — HTML, responsivní, brand konzistentní</li>
+                            <li><strong>Gemini:</strong> „Jak firmy v EU propagují doplňky stravy pro ženy 30-50? Best practices, kanály, messaging."</li>
+                            <li><strong>Claude:</strong> Výsledek z Gemini vložíte do Claude Projektu „VITAR Kampaně" → „Na základě tohoto researchu navrhni koncept letní kampaně pro Maxivita řadu."</li>
+                            <li><strong>Cursor:</strong> Z konceptu necháte agenta vytvořit landing page, email sérii a social media posty.</li>
+                        </ul>
+
+                        <p style="margin-top: 16px;"><strong>2. Competitive analysis → positioning</strong></p>
+                        <ul>
+                            <li><strong>Gemini:</strong> „Analyzuj české značky doplňků stravy — GreenSwan, Walmark, Nutrend. Jak komunikují, jaké kanály, jaký tón."</li>
+                            <li><strong>Claude:</strong> „Na základě této analýzy: kde má VITAR prostor se odlišit? Navrhni 3 positioning varianty."</li>
+                        </ul>
+
+                        <p style="margin-top: 16px;"><strong>3. Blog článek se SEO</strong></p>
+                        <ul>
+                            <li><strong>ChatGPT / Gemini:</strong> „Jaká klíčová slova hledají lidé kolem vitaminu D v ČR? Objem, konkurence."</li>
+                            <li><strong>Claude Projekt „VITAR Blog":</strong> „Napiš 1500 slov článek ‚Proč potřebujete vitamin D i v létě' pro vitar.cz. SEO optimalizovaný, meta tags, interní linking."</li>
+                            <li><strong>Cursor:</strong> Vytvoří HTML verzi článku s JSON-LD strukturovanými daty.</li>
+                        </ul>
+
+                        <p style="margin-top: 16px;"><strong>4. Social media batch z jednoho produktu</strong></p>
+                        <ul>
+                            <li><strong>Claude Projekt „VITAR Social":</strong> „Maxivita Magnesium 400mg — vytvoř 10 IG postů, 5 FB postů, 3 LinkedIn posty. Různé úhly: sport, stres, spánek, práce."</li>
+                            <li>Jeden brief → 18 postů s hashtags, CTA a návrhy vizuálů.</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
+            <!-- PRODUKT -->
+            <div class="acc-item">
+                <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+                    <div class="acc-icon" style="background:var(--accent-soft);color:var(--accent)">📦</div>
+                    <div class="acc-info">
+                        <div class="acc-title">Produktový manažér</div>
+                        <div class="acc-sub">Produktové karty, analýzy, regulatory, briefing pro retail</div>
+                    </div>
+                    <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="acc-body">
+                    <div class="acc-body-inner">
+                        <p><strong>1. Nový produkt → kompletní materiály</strong></p>
+                        <ul>
+                            <li><strong>Claude Projekt „VITAR Produkty":</strong> Nahrajete produktový brief (složení, benefity, cílovka) → „Vytvoř produktovou kartu pro e-shop s SEO popisem a nutričními hodnotami."</li>
+                            <li><strong>Cursor:</strong> Z textu vytvoří HTML kartu v brand designu, responsivní, tisknutelnou.</li>
+                            <li><strong>Stejný projekt:</strong> „Teď vytvoř verzi pro lékárenský leták — kratší, s claim compliance."</li>
+                        </ul>
+
+                        <p style="margin-top: 16px;"><strong>2. Konkurenční srovnání</strong></p>
+                        <ul>
+                            <li><strong>Gemini:</strong> „Porovnej Maxivita Vitamin C 1000mg s GreenSwan C-vitamin, Walmark C-vitamin a Nutrend C-1000. Složení, cena, dávkování, distribuce."</li>
+                            <li><strong>Claude:</strong> „Na základě tohoto srovnání: kde jsme silnější, kde slabší? Vytvoř porovnávací tabulku pro interní meeting."</li>
+                        </ul>
+
+                        <p style="margin-top: 16px;"><strong>3. Regulatory pre-check</strong></p>
+                        <ul>
+                            <li><strong>Claude:</strong> „Zkontroluj tyto health claimy pro Maxivita Magnesium podle EU Regulation 1924/2006. Které jsou povolené, které musíme přeformulovat?"</li>
+                            <li>Výstup: tabulka claimů se statusem (OK / upravit / zakázáno).</li>
+                        </ul>
+
+                        <p style="margin-top: 16px;"><strong>4. Retail prezentace</strong></p>
+                        <ul>
+                            <li><strong>Claude:</strong> „Připrav osnovu 10-slide prezentace pro lékárenský řetězec. Proč zařadit Maxivita: trh, marže, podpora, USP."</li>
+                            <li><strong>Cursor:</strong> Z osnovy vytvoří hotovou HTML prezentaci s grafy a brand designem.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXPORT -->
             <div class="acc-item">
                 <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
                     <div class="acc-icon" style="background:var(--cyan-soft);color:var(--cyan)">🌍</div>
                     <div class="acc-info">
                         <div class="acc-title">Export</div>
-                        <div class="acc-sub">Multijazyčné materiály, B2B dokumenty, tržní analýzy</div>
+                        <div class="acc-sub">Tržní research, překlady, B2B materiály, veletrhy</div>
                     </div>
                     <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </div>
                 <div class="acc-body">
                     <div class="acc-body-inner">
+                        <p><strong>1. Vstup na nový trh — research → materiály</strong></p>
                         <ul>
-                            <li><strong>Multijazyčné produktové listy</strong> — CZ → EN, DE, PL, HU</li>
-                            <li><strong>B2B nabídka pro distributora</strong> — Přizpůsobená zemi a partnerovi</li>
-                            <li><strong>Tržní analýza</strong> — Doplňky stravy v cílové zemi</li>
-                            <li><strong>Veletrh materiály</strong> — V jazyce trhu, claim compliance</li>
-                            <li><strong>Email v cizím jazyce</strong> — Kulturně přizpůsobený B2B email</li>
+                            <li><strong>Gemini:</strong> „Analyzuj trh doplňků stravy v Německu. Velikost, hlavní hráči, distribuční kanály, regulace, trendy."</li>
+                            <li><strong>Claude:</strong> „Na základě tohoto researchu: jaká je naše strategie vstupu? Kde máme šanci — lékárny, online, retail?"</li>
+                            <li><strong>Claude Projekt „Export DE":</strong> „Přelož naše CZ produktové listy pro německý trh — ne doslovně, přizpůsob B2B tónu a DE regulaci."</li>
+                        </ul>
+
+                        <p style="margin-top: 16px;"><strong>2. B2B nabídka pro distributora</strong></p>
+                        <ul>
+                            <li><strong>Claude Projekt „Export B2B":</strong> „Vytvoř nabídku pro polského distributora. VITAR portfolio, top 5 produktů, private label možnosti, další kroky."</li>
+                            <li><strong>Cursor:</strong> Z textu vytvoří PDF-ready HTML dokument v brand designu.</li>
+                        </ul>
+
+                        <p style="margin-top: 16px;"><strong>3. Veletrh prep</strong></p>
+                        <ul>
+                            <li><strong>Gemini:</strong> „Kdo vystavuje na Vitafoods Europe 2026? Jaké trendy dominují?"</li>
+                            <li><strong>Claude:</strong> „Na základě trendu ‚gut health' — jaké produkty z našeho portfolia odpovídají? Navrhni messaging pro stánek."</li>
+                            <li><strong>Cursor:</strong> Vytvoří materiály pro stánek — leták, one-pager, digitální prezentaci.</li>
+                        </ul>
+
+                        <p style="margin-top: 16px;"><strong>4. Email follow-up v cizím jazyce</strong></p>
+                        <ul>
+                            <li><strong>Claude Projekt „Export Emaily":</strong> „Napiš follow-up email pro německého distributora po meetingu na Vitafoods. Formální DE tón, reference na vzorky, nabídka dalšího callu."</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
+            <!-- R&D / VÝVOJ PRODUKTŮ -->
+            <div class="acc-item">
+                <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+                    <div class="acc-icon" style="background:var(--green-soft);color:var(--green)">🔬</div>
+                    <div class="acc-info">
+                        <div class="acc-title">Vývoj produktů (R&D)</div>
+                        <div class="acc-sub">Trendový research, formulace, regulatorika, dokumentace</div>
+                    </div>
+                    <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="acc-body">
+                    <div class="acc-body-inner">
+                        <p><strong>1. Trendový research → nový produkt</strong></p>
+                        <ul>
+                            <li><strong>Gemini:</strong> „Jaké jsou top trendy v doplňcích stravy v EU pro 2026-2027? Ingredience, formáty, cílové skupiny."</li>
+                            <li><strong>Claude:</strong> „Na základě trendu ‚adaptogeny pro stres' — navrhni koncept nového produktu pro Maxivita řadu. Ingredience, positioning, cílovka, claim."</li>
+                        </ul>
+
+                        <p style="margin-top: 16px;"><strong>2. Regulatory check formulace</strong></p>
+                        <ul>
+                            <li><strong>Claude:</strong> „Máme formulaci s ashwagandhou 300mg + magnézium 200mg + B6. Zkontroluj: je tato kombinace povolená v ČR a EU? Jaké health claimy můžeme použít?"</li>
+                            <li><strong>Gemini:</strong> „Najdi aktuální EFSA stanoviska k ashwagandze — co je schválené, co v řízení?"</li>
+                        </ul>
+
+                        <p style="margin-top: 16px;"><strong>3. Competitive intelligence</strong></p>
+                        <ul>
+                            <li><strong>Gemini:</strong> „Jaké nové produkty uvedl GymBeam a Nutrend v Q1 2026? Ingredience, cenový positioning, kanály."</li>
+                            <li><strong>Claude:</strong> „Shrň to do přehledné tabulky a identifikuj, kde máme mezeru v portfoliu."</li>
+                        </ul>
+
+                        <p style="margin-top: 16px;"><strong>4. Interní dokumentace</strong></p>
+                        <ul>
+                            <li><strong>Claude:</strong> „Vytvoř product development brief pro nový Maxivita Ashwagandha Complex. Formát: 1 stránka — koncept, ingredience, cílovka, regulace, timeline."</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KREATIVA -->
             <div class="acc-item">
                 <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
                     <div class="acc-icon" style="background:var(--yellow-soft);color:var(--yellow)">🎨</div>
                     <div class="acc-info">
-                        <div class="acc-title">Kreativa & Design</div>
-                        <div class="acc-sub">Bannery, šablony, brand assets</div>
+                        <div class="acc-title">Kreativa & E-shop</div>
+                        <div class="acc-sub">Bannery, šablony, produktový content, newsletter</div>
                     </div>
                     <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </div>
                 <div class="acc-body">
                     <div class="acc-body-inner">
+                        <p><strong>1. Kampaňové bannery — batch produkce</strong></p>
                         <ul>
-                            <li><strong>Banner sady</strong> — 10+ variant pro různé formáty a kanály</li>
-                            <li><strong>Email template</strong> — HTML newsletter, responsivní</li>
-                            <li><strong>Social media templates</strong> — Opakovaně použitelné šablony</li>
+                            <li><strong>Claude:</strong> „Potřebuju texty pro 10 bannerů na letní kampaň Maxivita. 3 formáty (IG story, FB feed, web banner). Headline + subheadline + CTA."</li>
+                            <li><strong>Cursor:</strong> Z textů vytvoří HTML bannery ve všech formátech s brand barvami.</li>
                         </ul>
-                    </div>
-                </div>
-            </div>
 
-            <div class="acc-item">
-                <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
-                    <div class="acc-icon" style="background:var(--green-soft);color:var(--green)">⚙️</div>
-                    <div class="acc-info">
-                        <div class="acc-title">Vývoj & Interní nástroje</div>
-                        <div class="acc-sub">Kalkulačky, formuláře, dashboardy</div>
-                    </div>
-                    <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </div>
-                <div class="acc-body">
-                    <div class="acc-body-inner">
+                        <p style="margin-top: 16px;"><strong>2. Produktový content pro e-shop</strong></p>
                         <ul>
-                            <li><strong>Cenová kalkulačka</strong> — Webová app, automatický rozpočet</li>
-                            <li><strong>Vzorky app</strong> — Formulář → admin → PDF pro sklad</li>
-                            <li><strong>Dashboard</strong> — Vizualizace dat bez Power BI licence</li>
+                            <li><strong>Claude Projekt „VITAR E-shop":</strong> „Napiš produktový popis pro Maxivita Omega-3 na vitar.cz. SEO optimalizovaný, 300 slov, s benefity a FAQ."</li>
+                            <li>OHIO: jednou nastavíte šablonu a tón → pro každý další produkt jen název a ingredience.</li>
                         </ul>
-                        <div class="tip-box">
-                            <span>⚠️</span>
-                            <div>Interní nástroje s firemními daty → <strong>release proces</strong> (viz AI Pakt).</div>
-                        </div>
+
+                        <p style="margin-top: 16px;"><strong>3. Newsletter z novinky</strong></p>
+                        <ul>
+                            <li><strong>Claude:</strong> „Máme nový produkt Maxivita Kolagen Beauty. Vytvoř text pro newsletter: subject line (3 varianty), preview text, 3 sekce obsahu, CTA."</li>
+                            <li><strong>Cursor:</strong> Vytvoří HTML newsletter template, responsivní, kompatibilní s emailovými klienty.</li>
+                        </ul>
                     </div>
                 </div>
             </div>

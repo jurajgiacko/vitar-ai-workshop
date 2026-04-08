@@ -265,6 +265,7 @@
             <a href="#" data-tab="pakt">AI Pakt</a>
             <a href="#" data-tab="usecases">Use Cases</a>
             <a href="#" data-tab="cheatsheet">Cheatsheet</a>
+            <a href="#" data-tab="starterkit">Starter Kit</a>
             <a href="#" data-tab="updates">Updates</a>
         </div>
         <button class="nav-hamburger" onclick="document.querySelector('.nav-mobile').classList.toggle('open')">
@@ -278,6 +279,7 @@
         <a href="#" data-tab="pakt">AI Pakt</a>
         <a href="#" data-tab="usecases">Use Cases</a>
         <a href="#" data-tab="cheatsheet">Cheatsheet</a>
+        <a href="#" data-tab="starterkit">Starter Kit</a>
         <a href="#" data-tab="updates">Updates</a>
     </div>
 </nav>
@@ -1185,7 +1187,303 @@ Tech: statická HTML + JS, responsivní, VITAR branding, tisknutelný výstup.</
     </div>
 </div>
 
-<!-- ==================== TAB 7: UPDATES ==================== -->
+<!-- ==================== TAB 7: STARTER KIT ==================== -->
+<div id="tab-starterkit" class="tab-content">
+    <div class="wrap">
+        <div class="section-header" style="padding-top: 40px;">
+            <h2>Starter Kit — Váš první AI Projekt</h2>
+            <p>Zkopírujte prompt, vložte do Claude / ChatGPT a nechte AI vytvořit vašeho osobního asistenta.</p>
+        </div>
+
+        <div class="card" style="border-left: 3px solid var(--purple); margin-bottom: 24px;">
+            <h3 style="color: var(--purple);">Co je meta-prompt?</h3>
+            <p style="margin-top: 8px; font-size: 0.92rem; line-height: 1.7;">
+                Je to <strong>prompt (zadání), který vytvoří jiný prompt</strong>. Místo toho, abyste sami psali instrukce pro svůj Projekt nebo Custom GPT, necháte AI, aby vám je navrhla. Vy jen popíšete, co potřebujete — AI vytvoří kompletní instrukce, které pak vložíte do svého Projektu.
+            </p>
+        </div>
+
+        <div class="flow-steps" style="margin-bottom: 32px;">
+            <div class="flow-step" style="border-left: 3px solid var(--accent);">
+                <div class="flow-num">1</div>
+                <div class="flow-text"><strong>Zkopírujte</strong> meta-prompt níže (upravte pro vaši roli).</div>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step" style="border-left: 3px solid var(--purple);">
+                <div class="flow-num" style="background:var(--purple-soft);color:var(--purple);">2</div>
+                <div class="flow-text"><strong>Vložte</strong> do Claude nebo ChatGPT. AI vám vygeneruje instrukce.</div>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step" style="border-left: 3px solid var(--green);">
+                <div class="flow-num" style="background:var(--green-soft);color:var(--green);">3</div>
+                <div class="flow-text"><strong>Vytvořte Projekt</strong> — vložte vygenerované instrukce do Custom Instructions. Hotovo.</div>
+            </div>
+        </div>
+
+        <!-- UNIVERZALNI META-PROMPT -->
+        <div class="section-header">
+            <h2>Univerzální meta-prompt</h2>
+            <p>Funguje pro jakoukoli roli. Upravte zvýrazněná pole a spusťte.</p>
+        </div>
+
+        <div class="prompt-box" style="border: 2px solid rgba(124,58,237,0.2);">
+            <div class="prompt-box-header" style="background: var(--purple-soft);">
+                <span class="prompt-box-label" style="color: var(--purple);">Meta-prompt — vytvoří váš AI Projekt</span>
+                <button class="copy-btn" onclick="copyPrompt(this)">Kopírovat</button>
+            </div>
+            <div class="prompt-box-content">Jsi expert na prompt engineering. Znáš všechny pravidla promptování a způsoby, jak psát efektivní prompty. Máš nastudované všechny promptovací techniky a vždy vybereš tu správnou.
+
+Potřebuji, abys mi vytvořil instrukce pro [POPIS ROLE — např. "Produktový manažér VITAR — doplňky stravy"].
+
+Tento prompt mi bude sloužit na to, aby mi pomáhal s [HLAVNÍ ÚKOLY — např. "produktovými kartami, texty na web, emailing a celkový content management"].
+
+Bude mi dávat rady, když nebudu něco vědět nebo budu potřebovat poradit s [OBLAST — např. "copy texty, marketingové texty, aktuální trendy v doplňcích stravy"].
+
+Aplikujeme pro [TRH — např. "CZ/SK market"]. Primární jazyk [JAZYK — např. "čeština"].
+
+Někdy mu můžu poslat i fotografie, aby věděl, co přesně řeším a co bude ten nejefektivnější způsob.
+
+1. Vyber nejlepší promptovací techniku a pověz mi, kterou jsi vybral.
+2. Přemýšlej krok za krokem.
+3. Do promptu přidej podle tvého uvážení vše, co by měl takový expert vědět o [OBOR — např. "marketingu pro doplňky stravy, suplementech, zdravotních claimech, regulaci EU"].
+4. Pomož si vyhledáváním relevantních informací na internetu.</div>
+        </div>
+
+        <div class="tip-box" style="margin-top: 16px;">
+            <span>💡</span>
+            <div><strong>Tip:</strong> Výstup z tohoto promptu zkopírujte a vložte jako <strong>Custom Instructions</strong> do vašeho Claude Projektu nebo ChatGPT Custom GPT. Od teď máte AI asistenta, který zná vaši práci.</div>
+        </div>
+
+        <!-- HOTOVÉ PŘÍKLADY PRO ROLE -->
+        <div class="section-header">
+            <h2>Hotové příklady pro vaše role</h2>
+            <p>Copy-paste ready. Vložte do Claude nebo ChatGPT a nechte vygenerovat instrukce.</p>
+        </div>
+
+        <div class="accordion">
+            <!-- EXPORT -->
+            <div class="acc-item">
+                <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+                    <div class="acc-icon" style="background:var(--cyan-soft);color:var(--cyan)">🌍</div>
+                    <div class="acc-info">
+                        <div class="acc-title">Export manažér</div>
+                        <div class="acc-sub">B2B nabídky, překlady, tržní analýzy, veletrhy</div>
+                    </div>
+                    <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="acc-body">
+                    <div class="acc-body-inner">
+                        <div class="prompt-box">
+                            <div class="prompt-box-header">
+                                <span class="prompt-box-label">Meta-prompt: Export</span>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Kopírovat</button>
+                            </div>
+                            <div class="prompt-box-content">Jsi expert na prompt engineering. Znáš všechny pravidla promptování a způsoby, jak psát efektivní prompty. Máš nastudované všechny promptovací techniky a vždy vybereš tu správnou.
+
+Potřebuji, abys mi vytvořil instrukce pro Export manažéra ve firmě VITAR — český výrobce doplňků stravy (značky Maxivita, VITAR).
+
+Tento prompt mi bude sloužit na to, aby mi pomáhal s B2B nabídkami pro zahraniční distributory, překlady materiálů (CZ → EN/DE/PL), tržními analýzami nových trhů, přípravou na veletrhy a follow-up emailovou komunikací.
+
+Bude mi dávat rady s formulací B2B nabídek, kulturními nuancemi obchodní komunikace v různých zemích, EU regulací doplňků stravy a zdravotními claimy podle nařízení 1924/2006.
+
+Aplikujeme pro mezinárodní B2B trh, primárně DE, PL, SK, Balkán. Primární jazyk čeština, výstupy často v EN/DE.
+
+Někdy mu můžu poslat i fotografie produktů nebo materiálů, aby věděl, co přesně řeším.
+
+1. Vyber nejlepší promptovací techniku a pověz mi, kterou jsi vybral.
+2. Přemýšlej krok za krokem.
+3. Do promptu přidej podle tvého uvážení vše, co by měl takový export expert vědět o B2B obchodu s doplňky stravy, distribuci v EU, regulatorice, veletrzích a obchodní komunikaci.
+4. Pomož si vyhledáváním relevantních informací na internetu.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRODUKTOVÝ MANAŽÉR -->
+            <div class="acc-item">
+                <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+                    <div class="acc-icon" style="background:var(--accent-soft);color:var(--accent)">📦</div>
+                    <div class="acc-info">
+                        <div class="acc-title">Produktový manažér</div>
+                        <div class="acc-sub">Produktové karty, competitive analysis, retail prezentace</div>
+                    </div>
+                    <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="acc-body">
+                    <div class="acc-body-inner">
+                        <div class="prompt-box">
+                            <div class="prompt-box-header">
+                                <span class="prompt-box-label">Meta-prompt: Produkt</span>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Kopírovat</button>
+                            </div>
+                            <div class="prompt-box-content">Jsi expert na prompt engineering. Znáš všechny pravidla promptování a způsoby, jak psát efektivní prompty. Máš nastudované všechny promptovací techniky a vždy vybereš tu správnou.
+
+Potřebuji, abys mi vytvořil instrukce pro Produktového manažéra ve firmě VITAR — český výrobce doplňků stravy (značky Maxivita, VITAR).
+
+Tento prompt mi bude sloužit na to, aby mi pomáhal s produktovými kartami pro e-shop, popisy produktů se SEO, konkurenčními analýzami, prezentacemi pro retailové řetězce a lékárny, a kontrolou zdravotních claimů.
+
+Bude mi dávat rady s pozicováním produktů na CZ/SK trhu, tvorbou nutričních tabulek, formulací claimů podle EU regulace 1924/2006 a marketingovými texty pro doplňky stravy.
+
+Aplikujeme pro CZ/SK market. Primární jazyk čeština.
+
+Někdy mu můžu poslat i fotografie produktů nebo obalů, aby věděl, co přesně řeším.
+
+1. Vyber nejlepší promptovací techniku a pověz mi, kterou jsi vybral.
+2. Přemýšlej krok za krokem.
+3. Do promptu přidej podle tvého uvážení vše, co by měl takový produktový expert vědět o doplňcích stravy, farmaceutickém marketingu, SEO pro e-commerce, regulatorice a retail prezentacích.
+4. Pomož si vyhledáváním relevantních informací na internetu.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MARKETING -->
+            <div class="acc-item">
+                <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+                    <div class="acc-icon" style="background:var(--purple-soft);color:var(--purple)">📢</div>
+                    <div class="acc-info">
+                        <div class="acc-title">Marketing & E-shop</div>
+                        <div class="acc-sub">Kampaně, social media, SEO content, newsletter</div>
+                    </div>
+                    <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="acc-body">
+                    <div class="acc-body-inner">
+                        <div class="prompt-box">
+                            <div class="prompt-box-header">
+                                <span class="prompt-box-label">Meta-prompt: Marketing</span>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Kopírovat</button>
+                            </div>
+                            <div class="prompt-box-content">Jsi expert na prompt engineering. Znáš všechny pravidla promptování a způsoby, jak psát efektivní prompty. Máš nastudované všechny promptovací techniky a vždy vybereš tu správnou.
+
+Potřebuji, abys mi vytvořil instrukce pro Marketing & Content manažéra ve firmě VITAR — český výrobce doplňků stravy (značky Maxivita, VITAR, web vitar.cz).
+
+Tento prompt mi bude sloužit na to, aby mi pomáhal s tvorbou kampaní, social media obsahem (Instagram, Facebook, LinkedIn), SEO optimalizovanými články pro blog, newslettery, landing pages a celkovým content managementem.
+
+Bude mi dávat rady s copywritingem pro zdravotnické produkty, aktuálními trendy v digital marketingu pro FMCG/health segment, a pomáhat s A/B testováním textů.
+
+Aplikujeme pro CZ/SK market. Primární jazyk čeština. Cílovka: ženy 30-55, zdravý životní styl.
+
+Někdy mu můžu poslat i fotografie produktů nebo screenshoty kampaní, aby věděl, co přesně řeším.
+
+1. Vyber nejlepší promptovací techniku a pověz mi, kterou jsi vybral.
+2. Přemýšlej krok za krokem.
+3. Do promptu přidej podle tvého uvážení vše, co by měl takový marketing expert vědět o digital marketingu pro doplňky stravy, copywritingu, SEO, social media strategiích a e-commerce.
+4. Pomož si vyhledáváním relevantních informací na internetu.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- R&D -->
+            <div class="acc-item">
+                <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+                    <div class="acc-icon" style="background:var(--green-soft);color:var(--green)">🔬</div>
+                    <div class="acc-info">
+                        <div class="acc-title">Vývoj produktů (R&D)</div>
+                        <div class="acc-sub">Trendový research, formulace, regulatorika, dokumentace</div>
+                    </div>
+                    <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="acc-body">
+                    <div class="acc-body-inner">
+                        <div class="prompt-box">
+                            <div class="prompt-box-header">
+                                <span class="prompt-box-label">Meta-prompt: R&D</span>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Kopírovat</button>
+                            </div>
+                            <div class="prompt-box-content">Jsi expert na prompt engineering. Znáš všechny pravidla promptování a způsoby, jak psát efektivní prompty. Máš nastudované všechny promptovací techniky a vždy vybereš tu správnou.
+
+Potřebuji, abys mi vytvořil instrukce pro R&D specialistu (vývoj produktů) ve firmě VITAR — český výrobce doplňků stravy (značky Maxivita, VITAR).
+
+Tento prompt mi bude sloužit na to, aby mi pomáhal s trendovým researchem ingrediencí, návrhy nových produktových konceptů, kontrolou regulatoriky (EU nařízení, EFSA stanoviska, health claimy), tvorbou interní dokumentace a competitive intelligence.
+
+Bude mi dávat rady s formulacemi doplňků stravy, dávkováním, interakcemi ingrediencí, aktuálními trendy v nutraceutikách a přípravou product development briefů.
+
+Aplikujeme pro CZ/SK/EU market. Primární jazyk čeština, odborné zdroje v angličtině.
+
+Někdy mu můžu poslat i fotografie produktů, tabulky složení nebo odborné články, aby věděl, co přesně řeším.
+
+1. Vyber nejlepší promptovací techniku a pověz mi, kterou jsi vybral.
+2. Přemýšlej krok za krokem.
+3. Do promptu přidej podle tvého uvážení vše, co by měl takový R&D expert vědět o doplňcích stravy, ingrediencích, EU regulatorice, EFSA, trendech v nutraceutikách a product developmentu.
+4. Pomož si vyhledáváním relevantních informací na internetu.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KREATIVA -->
+            <div class="acc-item">
+                <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+                    <div class="acc-icon" style="background:var(--yellow-soft);color:var(--yellow)">🎨</div>
+                    <div class="acc-info">
+                        <div class="acc-title">Kreativa & Design</div>
+                        <div class="acc-sub">Bannery, šablony, vizuální content, brand materiály</div>
+                    </div>
+                    <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="acc-body">
+                    <div class="acc-body-inner">
+                        <div class="prompt-box">
+                            <div class="prompt-box-header">
+                                <span class="prompt-box-label">Meta-prompt: Kreativa</span>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Kopírovat</button>
+                            </div>
+                            <div class="prompt-box-content">Jsi expert na prompt engineering. Znáš všechny pravidla promptování a způsoby, jak psát efektivní prompty. Máš nastudované všechny promptovací techniky a vždy vybereš tu správnou.
+
+Potřebuji, abys mi vytvořil instrukce pro Kreativce / Grafika ve firmě VITAR — český výrobce doplňků stravy (značky Maxivita, VITAR, web vitar.cz).
+
+Tento prompt mi bude sloužit na to, aby mi pomáhal s texty pro bannery a vizuály, kampaňovými headliny a CTA, produktovým contentem pro e-shop, newsletter šablonami a celkovým brand copywritingem.
+
+Bude mi dávat rady s vizuálním storytellingem pro zdravotnické produkty, aktuálními trendy v designu pro e-commerce a pomáhat s briefy pro fotoshooting a video content.
+
+Aplikujeme pro CZ/SK market. Primární jazyk čeština. Brand barvy: zelená (#059669), bílá.
+
+Někdy mu můžu poslat fotografie, screenshoty nebo mockupy, aby věděl, co přesně řeším a navrhl nejlepší textaci.
+
+1. Vyber nejlepší promptovací techniku a pověz mi, kterou jsi vybral.
+2. Přemýšlej krok za krokem.
+3. Do promptu přidej podle tvého uvážení vše, co by měl takový kreativní expert vědět o vizuálním marketingu pro doplňky stravy, copywritingu pro bannery, UX writingu pro e-shop a brand komunikaci.
+4. Pomož si vyhledáváním relevantních informací na internetu.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header" style="padding-top: 32px;">
+            <h2>Kam s výstupem?</h2>
+        </div>
+
+        <div class="card-grid card-grid-2">
+            <div class="card" style="border-top: 3px solid var(--accent);">
+                <h3>Claude Projekt</h3>
+                <ol style="font-size:0.88rem; color:var(--text-muted); padding-left:18px; margin-top:8px;">
+                    <li>Otevřete <a href="https://claude.ai" target="_blank" style="color:var(--accent);">claude.ai</a> → Projects → New Project</li>
+                    <li>Do <strong>Custom Instructions</strong> vložte vygenerované instrukce</li>
+                    <li>Do <strong>Knowledge</strong> nahrajte relevantní dokumenty (ceník, brand guide...)</li>
+                    <li>Hotovo — každá konverzace v projektu vás zná</li>
+                </ol>
+            </div>
+            <div class="card" style="border-top: 3px solid var(--green);">
+                <h3>ChatGPT Custom GPT</h3>
+                <ol style="font-size:0.88rem; color:var(--text-muted); padding-left:18px; margin-top:8px;">
+                    <li>Otevřete ChatGPT → Explore GPTs → Create</li>
+                    <li>Do <strong>Instructions</strong> vložte vygenerované instrukce</li>
+                    <li>Do <strong>Knowledge</strong> nahrajte dokumenty</li>
+                    <li>Pojmenujte a uložte — máte vlastního asistenta</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="tip-box" style="margin-top: 16px;">
+            <span>💡</span>
+            <div><strong>OHIO v praxi:</strong> Tento meta-prompt je sám o sobě příklad OHIO. Jednou si vytvoříte asistenta — a pak ho používáte denně, bez opakovaného vysvětlování. Za 5 minut dnes ušetříte hodiny příští měsíc.</div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== TAB 8: UPDATES ==================== -->
 <div id="tab-updates" class="tab-content">
     <div class="wrap">
         <div class="section-header" style="padding-top: 40px;">

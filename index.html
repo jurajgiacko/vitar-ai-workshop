@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI @ VITAR — Od chatu k agentům | JURAJ.DIGITAL</title>
+    <style>
+        :root {
+            --bg: #fafbfc;
+            --bg-surface: #f1f5f9;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f8fafc;
+            --border: rgba(0,0,0,0.08);
+            --border-hover: rgba(0,0,0,0.15);
+            --accent: #2563eb;
+            --accent-soft: rgba(37, 99, 235, 0.08);
+            --green: #059669;
+            --green-soft: rgba(5, 150, 105, 0.08);
+            --red: #dc2626;
+            --red-soft: rgba(220, 38, 38, 0.08);
+            --purple: #7c3aed;
+            --purple-soft: rgba(124, 58, 237, 0.08);
+            --yellow: #d97706;
+            --yellow-soft: rgba(217, 119, 6, 0.08);
+            --cyan: #0891b2;
+            --cyan-soft: rgba(8, 145, 178, 0.08);
+            --text: #1a1a2e;
+            --text-muted: #64748b;
+            --text-dim: #94a3b8;
+            --radius: 14px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+        .wrap { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+
+        .top-nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-inner {
+            max-width: 800px; margin: 0 auto; padding: 0 20px;
+            display: flex; align-items: center; justify-content: space-between; height: 56px;
+        }
+        .nav-brand { font-weight: 800; font-size: 1.05rem; color: var(--text); text-decoration: none; letter-spacing: -0.3px; }
+        .nav-brand span { color: var(--accent); }
+        .nav-links { display: flex; gap: 4px; list-style: none; }
+        .nav-links a {
+            font-size: 0.8rem; font-weight: 600; color: var(--text-muted);
+            text-decoration: none; padding: 6px 10px; border-radius: 8px; transition: all 0.15s;
+        }
+        .nav-links a:hover { color: var(--text); background: var(--bg-surface); }
+        .nav-links a.active { color: var(--accent); background: var(--accent-soft); }
+        .nav-hamburger {
+            display: none; background: none; border: none; cursor: pointer; padding: 8px; color: var(--text);
+        }
+        .nav-hamburger svg { width: 24px; height: 24px; }
+        .nav-mobile {
+            display: none; position: absolute; top: 56px; left: 0; right: 0;
+            background: rgba(255,255,255,0.97); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border); padding: 12px 20px 16px;
+            flex-direction: column; gap: 4px;
+        }
+        .nav-mobile.open { display: flex; }
+        .nav-mobile a {
+            font-size: 0.92rem; font-weight: 600; color: var(--text-muted);
+            text-decoration: none; padding: 10px 14px; border-radius: 8px; transition: all 0.15s;
+        }
+        .nav-mobile a:hover { color: var(--text); background: var(--bg-surface); }
+        .nav-mobile a.active { color: var(--accent); background: var(--accent-soft); }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; min-height: calc(100vh - 56px); padding-bottom: 80px; }
+
+        .hero { text-align: center; padding: 72px 20px 56px; }
+        .hero-badge {
+            display: inline-block; background: var(--accent-soft); color: var(--accent);
+            font-size: 0.78rem; font-weight: 600; padding: 5px 16px; border-radius: 20px;
+            margin-bottom: 12px; letter-spacing: 0.3px;
+        }
+        .hero-date { display: block; font-size: 0.82rem; color: var(--text-dim); margin-bottom: 28px; }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; line-height: 1.15; margin-bottom: 16px;
+            background: linear-gradient(135deg, #1a1a2e, var(--accent));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero p { color: var(--text-muted); font-size: 1.05rem; max-width: 560px; margin: 0 auto 32px; }
+
+        .section-header { padding: 56px 0 24px; }
+        .section-header:first-child { padding-top: 32px; }
+        .section-header h2 { font-size: 1.5rem; font-weight: 700; }
+        .section-header p { color: var(--text-muted); margin-top: 6px; font-size: 0.95rem; }
+
+        .card-grid { display: grid; gap: 12px; }
+        .card-grid-2 { grid-template-columns: 1fr 1fr; }
+        .card-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+        .card {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 24px; transition: border-color 0.2s;
+        }
+        .card:hover { border-color: var(--border-hover); }
+        .card-icon { font-size: 1.5rem; margin-bottom: 12px; }
+        .card h3 { font-size: 1.05rem; font-weight: 650; margin-bottom: 8px; }
+        .card p { font-size: 0.88rem; color: var(--text-muted); }
+        .card-tag {
+            display: inline-block; font-size: 0.68rem; font-weight: 700;
+            padding: 3px 10px; border-radius: 6px; text-transform: uppercase;
+            letter-spacing: 0.5px; margin-bottom: 12px;
+        }
+
+        .compare-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.88rem; }
+        .compare-table th {
+            text-align: left; padding: 12px 16px; font-weight: 700; font-size: 0.78rem;
+            text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--border);
+        }
+        .compare-table th:nth-child(2) { color: var(--text-dim); }
+        .compare-table th:nth-child(3) { color: var(--accent); }
+        .compare-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+        .compare-table td:first-child { font-weight: 600; color: var(--text); }
+        .compare-table tr:last-child td { border-bottom: none; }
+
+        .accordion { display: flex; flex-direction: column; gap: 12px; }
+        .acc-item {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+            overflow: hidden; transition: border-color 0.2s;
+        }
+        .acc-item:hover { border-color: var(--border-hover); }
+        .acc-item.open { border-color: rgba(37,99,235,0.2); box-shadow: 0 2px 8px rgba(37,99,235,0.06); }
+        .acc-header {
+            display: flex; align-items: center; gap: 16px; padding: 20px 24px;
+            cursor: pointer; user-select: none;
+        }
+        .acc-header:hover { background: var(--bg-card-hover); }
+        .acc-icon {
+            width: 42px; height: 42px; border-radius: 11px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.25rem; flex-shrink: 0;
+        }
+        .acc-info { flex: 1; min-width: 0; }
+        .acc-title { font-weight: 650; font-size: 1.02rem; }
+        .acc-sub { font-size: 0.84rem; color: var(--text-muted); margin-top: 2px; }
+        .acc-chevron {
+            flex-shrink: 0; width: 20px; height: 20px; color: var(--text-dim); transition: transform 0.25s;
+        }
+        .acc-item.open .acc-chevron { transform: rotate(180deg); }
+        .acc-body { display: none; }
+        .acc-item.open > .acc-body { display: block; }
+        .acc-body-inner { padding: 0 24px 24px; }
+        .acc-body-inner p { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 10px; }
+        .acc-body-inner p:last-child { margin-bottom: 0; }
+        .acc-body-inner ul { color: var(--text-muted); font-size: 0.88rem; padding-left: 20px; margin-bottom: 10px; }
+        .acc-body-inner li { margin-bottom: 4px; }
+
+        .prompt-box {
+            background: var(--bg-surface); border: 1px solid var(--border); border-radius: 10px;
+            margin: 12px 0; overflow: hidden;
+        }
+        .prompt-box-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 8px 14px; background: rgba(0,0,0,0.02); border-bottom: 1px solid var(--border);
+        }
+        .prompt-box-label { font-size: 0.72rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; }
+        .copy-btn {
+            background: rgba(0,0,0,0.04); border: 1px solid var(--border); color: var(--text-dim);
+            font-size: 0.72rem; font-weight: 600; padding: 3px 12px; border-radius: 6px;
+            cursor: pointer; transition: all 0.15s; display: flex; align-items: center; gap: 4px;
+        }
+        .copy-btn:hover { background: rgba(0,0,0,0.06); color: var(--text-muted); }
+        .copy-btn.copied { background: var(--green-soft); color: var(--green); border-color: rgba(5,150,105,0.2); }
+        .prompt-box-content {
+            padding: 14px 16px; font-size: 0.88rem; color: var(--text-muted);
+            line-height: 1.65; white-space: pre-wrap;
+        }
+
+        .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+        .rule-card {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+            padding: 16px 18px; display: flex; gap: 12px; align-items: flex-start;
+        }
+        .rule-card.allowed { border-left: 3px solid var(--green); }
+        .rule-card.forbidden { border-left: 3px solid var(--red); }
+        .rule-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+        .rule-text { font-size: 0.88rem; color: var(--text-muted); }
+        .rule-text strong { color: var(--text); }
+
+        .tip-box {
+            background: var(--yellow-soft); border: 1px solid rgba(217,119,6,0.12); border-radius: 8px;
+            padding: 12px 16px; font-size: 0.85rem; color: #92400e; margin: 12px 0;
+            display: flex; gap: 8px;
+        }
+        .tip-box span { flex-shrink: 0; }
+        .info-box {
+            background: var(--accent-soft); border: 1px solid rgba(37,99,235,0.12); border-radius: 8px;
+            padding: 12px 16px; font-size: 0.85rem; color: #1e40af; margin: 12px 0;
+            display: flex; gap: 8px;
+        }
+
+        .flow-steps { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+        .flow-step {
+            display: flex; align-items: center; gap: 12px;
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px;
+        }
+        .flow-num {
+            width: 32px; height: 32px; border-radius: 8px; background: var(--accent-soft); color: var(--accent);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.82rem; font-weight: 700; flex-shrink: 0;
+        }
+        .flow-text { font-size: 0.92rem; }
+        .flow-arrow { text-align: center; color: var(--text-dim); font-size: 0.82rem; padding: 2px 0; }
+
+        .quote-block {
+            border-left: 3px solid var(--accent);
+            padding: 20px 24px;
+            background: var(--bg-card);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin: 16px 0;
+        }
+        .quote-block p { font-size: 1.1rem; font-weight: 500; line-height: 1.6; }
+        .quote-block .quote-author { font-size: 0.82rem; color: var(--text-dim); margin-top: 8px; font-weight: 400; }
+
+        .update-item {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 20px 24px; margin-bottom: 12px;
+        }
+        .update-date { font-size: 0.72rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .update-title { font-size: 1.05rem; font-weight: 650; margin-bottom: 6px; }
+        .update-text { font-size: 0.88rem; color: var(--text-muted); }
+
+        .empty-state {
+            text-align: center; padding: 60px 20px; color: var(--text-dim);
+        }
+        .empty-state .empty-icon { font-size: 2.5rem; margin-bottom: 16px; }
+        .empty-state h3 { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 8px; }
+        .empty-state p { font-size: 0.92rem; max-width: 400px; margin: 0 auto; }
+
+        @media (max-width: 640px) {
+            .nav-links { display: none; }
+            .nav-hamburger { display: block; }
+            .card-grid-2, .card-grid-3 { grid-template-columns: 1fr; }
+            .rules-grid { grid-template-columns: 1fr; }
+            .compare-table { font-size: 0.82rem; }
+            .compare-table th, .compare-table td { padding: 8px 10px; }
+            .acc-header { padding: 16px 18px; gap: 12px; }
+            .acc-body-inner { padding: 0 18px 18px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav">
+    <div class="nav-inner">
+        <a class="nav-brand" href="#"><span>AI</span> @ VITAR</a>
+        <div class="nav-links">
+            <a href="#" class="active" data-tab="mindset">Mindset</a>
+            <a href="#" data-tab="compare">Chat vs Agent</a>
+            <a href="#" data-tab="projekty">Projekty & OHIO</a>
+            <a href="#" data-tab="pakt">AI Pakt</a>
+            <a href="#" data-tab="usecases">Use Cases</a>
+            <a href="#" data-tab="cheatsheet">Cheatsheet</a>
+            <a href="#" data-tab="updates">Updates</a>
+        </div>
+        <button class="nav-hamburger" onclick="document.querySelector('.nav-mobile').classList.toggle('open')">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+    </div>
+    <div class="nav-mobile">
+        <a href="#" class="active" data-tab="mindset">Mindset</a>
+        <a href="#" data-tab="compare">Chat vs Agent</a>
+        <a href="#" data-tab="projekty">Projekty & OHIO</a>
+        <a href="#" data-tab="pakt">AI Pakt</a>
+        <a href="#" data-tab="usecases">Use Cases</a>
+        <a href="#" data-tab="cheatsheet">Cheatsheet</a>
+        <a href="#" data-tab="updates">Updates</a>
+    </div>
+</nav>
+
+<!-- ==================== TAB 1: MINDSET ==================== -->
+<div id="tab-mindset" class="tab-content active">
+    <div class="wrap">
+        <div class="hero">
+            <span class="hero-badge">AI @ VITAR — MINDSET SHIFT</span>
+            <span class="hero-date">Produktový tím · Duben 2026 · Živý dokument</span>
+            <h1>Tohle není školení.<br>Tohle je nový způsob práce.</h1>
+            <p>Nezajímá nás, jestli umíte promptovat. Zajímá nás, jestli jste ochotní změnit způsob, jakým přistupujete k práci. Zbytek přijde sám.</p>
+        </div>
+
+        <div class="quote-block">
+            <p>„Nejlepší technologie je ta, kterou nevnímáte. Prostě pracuje."</p>
+        </div>
+
+        <div class="section-header">
+            <h2>O čem tohle je</h2>
+        </div>
+
+        <div class="card-grid card-grid-3">
+            <div class="card" style="border-top: 3px solid var(--red);">
+                <div class="card-icon">🚫</div>
+                <h3>Není to školení</h3>
+                <p>Nebudeme procházet funkce nástroje. Nebudeme klikat na tlačítka. Nebudeme se učit prompty.</p>
+            </div>
+            <div class="card" style="border-top: 3px solid var(--accent);">
+                <div class="card-icon">🧠</div>
+                <h3>Je to mindset shift</h3>
+                <p>Změna v tom, jak přemýšlíte o práci. Každý nový úkol začíná otázkou: <strong>„Jak to udělá AI?"</strong></p>
+            </div>
+            <div class="card" style="border-top: 3px solid var(--green);">
+                <div class="card-icon">🔄</div>
+                <h3>Je to začátek cesty</h3>
+                <p>Tato stránka poroste. Budou přibývat příklady, odpovědi na vaše otázky, nové use cases.</p>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2>Co uvidíte</h2>
+            <p>Tony Stark effect — ne přednáška, ale live ukázka</p>
+        </div>
+
+        <div class="card" style="border-left: 3px solid var(--accent); margin-bottom: 16px;">
+            <p style="font-size: 1.02rem; line-height: 1.7;">
+                Přijdu. Otevřu počítač. A před vašima očima vytvořím něco, co by normálně zabralo hodiny nebo dny. <strong>Žádné slajdy. Žádná teorie. Jen reálná práce s reálným výstupem.</strong>
+            </p>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 12px;">
+                Produktová karta pro e-shop. Landing page pro kampaň. Export materiál ve třech jazycích. Vše za minuty. Vše live. A pak si o tom promluvíme.
+            </p>
+        </div>
+
+        <div class="section-header">
+            <h2>3 věci, které si odnesete</h2>
+        </div>
+
+        <div class="flow-steps">
+            <div class="flow-step" style="border-left: 3px solid var(--accent);">
+                <div class="flow-num">1</div>
+                <div class="flow-text"><strong>Pochopíte rozdíl</strong> mezi chatem a agentem. Proč kopírování do ChatGPT je slepá ulička.</div>
+            </div>
+            <div class="flow-step" style="border-left: 3px solid var(--purple);">
+                <div class="flow-num" style="background:var(--purple-soft);color:var(--purple);">2</div>
+                <div class="flow-text"><strong>Poznáte Projekty a OHIO</strong> — jak si vytvořit workflow, který za vás pracuje opakovaně.</div>
+            </div>
+            <div class="flow-step" style="border-left: 3px solid var(--green);">
+                <div class="flow-num" style="background:var(--green-soft);color:var(--green);">3</div>
+                <div class="flow-text"><strong>Budete vědět kde začít</strong> — a tato stránka vám bude průvodcem na celé cestě.</div>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2>Jak tahle stránka funguje</h2>
+        </div>
+
+        <div class="card" style="background: var(--accent-soft); border-color: rgba(37,99,235,0.15);">
+            <h3 style="color: var(--accent);">Živý dokument, ne jednorázový handout</h3>
+            <p style="margin-top: 8px;">
+                Toto <strong>není PDF, které si přečtete a zahodíte</strong>. Tato stránka bude růst:
+            </p>
+            <ul style="font-size: 0.88rem; color: var(--text-muted); padding-left: 20px; margin-top: 10px;">
+                <li>Po workshopu sem přidáme <strong>odpovědi na vaše otázky</strong></li>
+                <li>Budou přibývat <strong>konkrétní use cases</strong> z vaší práce</li>
+                <li>Nové <strong>prompty a workflow</strong> jak je budeme objevovat</li>
+                <li><strong>Updates</strong> — co je nového v AI, co se změnilo, co funguje</li>
+            </ul>
+            <p style="font-size: 0.85rem; color: var(--accent); font-weight: 600; margin-top: 12px;">
+                Uložte si záložku. Vracejte se. Sledujte záložku "Updates".
+            </p>
+        </div>
+
+        <div class="section-header">
+            <h2>Kde jsme na AI škále</h2>
+            <p>OpenAI model: Fluency → Workflow → Agents</p>
+        </div>
+
+        <div class="flow-steps">
+            <div class="flow-step" style="border-color: var(--accent); background: var(--accent-soft);">
+                <div class="flow-num" style="background: var(--accent); color: white;">1</div>
+                <div class="flow-text"><strong>Fluency</strong> — Každý umí AI použít pro svou práci. <span style="color:var(--accent);font-weight:600;">← JSME ZDE</span></div>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <div class="flow-num">2</div>
+                <div class="flow-text"><strong>Workflow</strong> — Top workflow zabudované do nástrojů a SOP</div>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <div class="flow-num">3</div>
+                <div class="flow-text"><strong>Agents</strong> — Vybrané procesy agentizované s human-in-the-loop</div>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <span>⚠️</span>
+            <div><strong>Bez fluency se agenti mění na drahé demo.</strong> Proto nejdřív mindset, pak nástroje, pak automatizace.</div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== TAB 2: CHAT VS AGENT ==================== -->
+<div id="tab-compare" class="tab-content">
+    <div class="wrap">
+        <div class="section-header" style="padding-top: 40px;">
+            <h2>Chat vs Agent</h2>
+            <p>Klíčový posun, který mění všechno</p>
+        </div>
+
+        <div class="quote-block">
+            <p>Většina lidí používá AI takhle: otevřít chat → zkopírovat text → dostat odpověď → zkopírovat zpátky → ručně opravit → opakovat. <strong>To není AI. To je lepší Google.</strong></p>
+        </div>
+
+        <div class="card" style="overflow-x: auto; margin-top: 24px;">
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Chat (starý způsob)</th>
+                        <th>Agent (nový způsob)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Vidí vaše soubory?</td>
+                        <td>Ne — musíte kopírovat</td>
+                        <td>Ano — pracuje přímo s nimi</td>
+                    </tr>
+                    <tr>
+                        <td>Pamatuje kontext?</td>
+                        <td>Jen v konverzaci</td>
+                        <td>Vidí celý projekt</td>
+                    </tr>
+                    <tr>
+                        <td>Výstup</td>
+                        <td>Text ke zkopírování</td>
+                        <td>Hotový soubor, web, app</td>
+                    </tr>
+                    <tr>
+                        <td>Iterace</td>
+                        <td>"Zkrať to, změň tón"</td>
+                        <td>"Uprav heading a přidej tabulku"</td>
+                    </tr>
+                    <tr>
+                        <td>Opakované úkoly</td>
+                        <td>Pokaždé vysvětlovat znovu</td>
+                        <td>Jednou nastavit → používat opakovaně</td>
+                    </tr>
+                    <tr>
+                        <td>Nejlepší pro</td>
+                        <td>Quick otázky, brainstorming</td>
+                        <td>Reálnou tvorbu materiálů</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="info-box" style="margin-top: 16px;">
+            <span>ℹ️</span>
+            <div>Chat nekončí. Pro quick otázky a brainstorming je stále skvělý. Ale pro <strong>tvorbu</strong> — produktové karty, kampaně, materiály — je agent řádově efektivnější.</div>
+        </div>
+
+        <div class="section-header">
+            <h2>Jak to funguje v praxi</h2>
+            <p>Cursor → GitHub → Vercel: od nápadu k hotovému výstupu</p>
+        </div>
+
+        <div class="flow-steps">
+            <div class="flow-step">
+                <div class="flow-num">1</div>
+                <div class="flow-text"><strong>Cursor</strong> — Otevřete projekt. Řeknete agentovi co chcete. On to vytvoří / upraví.</div>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <div class="flow-num">2</div>
+                <div class="flow-text"><strong>Iterace</strong> — "Změň barvy", "Přidej sekci", "Zkrať text". Agent upraví přímo v souboru.</div>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <div class="flow-num">3</div>
+                <div class="flow-text"><strong>GitHub</strong> — Uložíte (push). Verzované, sdílené. Žádné v7_final_FINAL.pptx.</div>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <div class="flow-num">4</div>
+                <div class="flow-text"><strong>Vercel</strong> — Automaticky live. 1 push = hotový web. Žádné emaily s přílohami.</div>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2>Co už funguje ve VITARu</h2>
+        </div>
+
+        <div class="card-grid card-grid-2">
+            <div class="card">
+                <div class="card-tag" style="background:var(--green-soft);color:var(--green);">Hotovo</div>
+                <h3>HTML prezentace pro retail</h3>
+                <p>Intersport cenník. <strong>30 minut</strong> místo 2 dnů.</p>
+            </div>
+            <div class="card">
+                <div class="card-tag" style="background:var(--green-soft);color:var(--green);">Hotovo</div>
+                <h3>126 bannerů — outlet kampaň</h3>
+                <p>CZ+SK, 3 kampaně. <strong>2 hodiny</strong> místo 3 dnů.</p>
+            </div>
+            <div class="card">
+                <div class="card-tag" style="background:var(--green-soft);color:var(--green);">Hotovo</div>
+                <h3>Produktové karty e-shop</h3>
+                <p>HTML se SEO strukturou. <strong>4 produkty za odpoledne</strong>.</p>
+            </div>
+            <div class="card">
+                <div class="card-tag" style="background:var(--accent-soft);color:var(--accent);">V buildu</div>
+                <h3>Kalkulačka vývoje</h3>
+                <p>Webová app pro obchodníky. Automatický rozpočet ceny.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== TAB 3: PROJEKTY & OHIO ==================== -->
+<div id="tab-projekty" class="tab-content">
+    <div class="wrap">
+        <div class="section-header" style="padding-top: 40px;">
+            <h2>Projekty & OHIO</h2>
+            <p>Dva koncepty, které změní jak pracujete s AI každý den</p>
+        </div>
+
+        <!-- PROJEKTY -->
+        <div class="section-header">
+            <h2>Projekty — AI, která vás zná</h2>
+            <p>Claude, ChatGPT i Cursor umí pracovat s projekty. Tady je proč to musíte používat.</p>
+        </div>
+
+        <div class="quote-block">
+            <p>Každý den otevíráte nový chat a znovu vysvětlujete kdo jste, co děláte, jaký tón chcete. <strong>To je jako každé ráno představovat kolegovi kdo jste.</strong></p>
+        </div>
+
+        <div class="card" style="margin-top: 16px; border-left: 3px solid var(--purple);">
+            <h3 style="color: var(--purple);">Co je Projekt?</h3>
+            <p style="margin-top: 8px;">
+                Projekt je <strong>kontext, který AI drží napříč konverzacemi</strong>. Řeknete jí jednou:
+            </p>
+            <ul style="font-size: 0.88rem; color: var(--text-muted); padding-left: 20px; margin-top: 10px;">
+                <li>Kdo jste a co děláte</li>
+                <li>Jaký tón a styl chcete</li>
+                <li>Jaké dokumenty má znát (cenníky, brand guide, produktové listy)</li>
+                <li>Jaká pravidla dodržovat</li>
+            </ul>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 10px;">
+                Od teď každá konverzace v tomto projektu <strong>ví vše</strong>. Nemusíte opakovat. Nemusíte vysvětlovat. Prostě řeknete co potřebujete.
+            </p>
+        </div>
+
+        <div class="section-header" style="padding-top: 32px;">
+            <h2>Projekty v praxi</h2>
+        </div>
+
+        <div class="accordion">
+            <div class="acc-item">
+                <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+                    <div class="acc-icon" style="background:var(--accent-soft);color:var(--accent)">📦</div>
+                    <div class="acc-info">
+                        <div class="acc-title">Claude Projekty</div>
+                        <div class="acc-sub">Custom instructions + knowledge base = AI, která rozumí vaší práci</div>
+                    </div>
+                    <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="acc-body">
+                    <div class="acc-body-inner">
+                        <p><strong>Jak na to:</strong></p>
+                        <ul>
+                            <li>Otevřete claude.ai → Projects → New Project</li>
+                            <li><strong>Custom Instructions:</strong> Napište kdo jste, co děláte, jaký tón a formát chcete</li>
+                            <li><strong>Knowledge:</strong> Nahrajte dokumenty — cenník, brand guide, produktové listy</li>
+                            <li>Každá nová konverzace v projektu má tento kontext automaticky</li>
+                        </ul>
+                        <p><strong>Příklady projektů pro váš tým:</strong></p>
+                        <ul>
+                            <li><strong>„VITAR — Produktové karty"</strong> — brand guide + šablona karty + nutriční tabulky</li>
+                            <li><strong>„Export — DE trh"</strong> — DE brand voice + regulace + vzorové materiály</li>
+                            <li><strong>„Marketing — Kampaně"</strong> — cílovky + tón + minulé úspěšné kampaně</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="acc-item">
+                <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+                    <div class="acc-icon" style="background:var(--green-soft);color:var(--green)">💬</div>
+                    <div class="acc-info">
+                        <div class="acc-title">ChatGPT — Custom GPTs & Projekty</div>
+                        <div class="acc-sub">Stejný princip: kontext jednou, používáte opakovaně</div>
+                    </div>
+                    <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="acc-body">
+                    <div class="acc-body-inner">
+                        <p>ChatGPT má <strong>Projects</strong> (podobné jako Claude) a <strong>Custom GPTs</strong> — kde si můžete vytvořit specializovaného asistenta pro konkrétní úkol.</p>
+                        <p><strong>Custom GPT příklady:</strong></p>
+                        <ul>
+                            <li><strong>„VITAR Email Writer"</strong> — ví jaký tón, zná produkty, generuje B2B emaily</li>
+                            <li><strong>„Product Card Generator"</strong> — zná šablonu, brand barvy, generuje karty</li>
+                            <li><strong>„Překladatel DE/EN"</strong> — zná VITAR terminologii, přizpůsobí trhu</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="acc-item">
+                <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+                    <div class="acc-icon" style="background:var(--purple-soft);color:var(--purple)">🛠️</div>
+                    <div class="acc-info">
+                        <div class="acc-title">Cursor — Rules & Context</div>
+                        <div class="acc-sub">Agent, který zná váš celý projekt a dodržuje vaše pravidla</div>
+                    </div>
+                    <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="acc-body">
+                    <div class="acc-body-inner">
+                        <p>Cursor jde ještě dál. Vidí <strong>celý váš projekt</strong> — všechny soubory, strukturu, kód. Plus má <strong>Rules</strong> — pravidla, která dodržuje automaticky.</p>
+                        <p><strong>Příklad:</strong> Máte Rules které říkají "vždy používej VITAR brand barvy, vždy responsivní, vždy česky". Od teď to dodržuje bez ptaní.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- OHIO -->
+        <div class="section-header">
+            <h2>OHIO — Only Handle It Once</h2>
+            <p>Pokud něco děláte opakovaně, děláte to špatně.</p>
+        </div>
+
+        <div class="quote-block" style="border-left-color: var(--green);">
+            <p>Každý úkol, který děláte víc než dvakrát, by měl mít svůj <strong>workflow</strong>. Nastavte ho jednou — a pak ho jen spouštíte.</p>
+        </div>
+
+        <div class="card-grid card-grid-2" style="margin-top: 16px;">
+            <div class="card" style="border-top: 3px solid var(--red);">
+                <h3 style="color: var(--red);">Bez OHIO</h3>
+                <p style="margin-top: 8px;">
+                    Každý týden píšete email pro retail partnera. Pokaždé otevřete chat. Pokaždé vysvětlíte kontext. Pokaždé opravujete výstup. <strong>20 minut × 52 týdnů = 17 hodin ročně</strong> na jeden typ emailu.
+                </p>
+            </div>
+            <div class="card" style="border-top: 3px solid var(--green);">
+                <h3 style="color: var(--green);">S OHIO</h3>
+                <p style="margin-top: 8px;">
+                    Jednou vytvoříte Claude Projekt "Retail emaily". Nahrajete šablony, nastavíte tón. Od teď: otevřete projekt → "Napiš email pro Intersport o nové akci" → <strong>2 minuty</strong>. Hotovo.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-header" style="padding-top: 32px;">
+            <h2>OHIO v praxi — příklady</h2>
+        </div>
+
+        <div class="accordion">
+            <div class="acc-item">
+                <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+                    <div class="acc-icon" style="background:var(--green-soft);color:var(--green)">📧</div>
+                    <div class="acc-info">
+                        <div class="acc-title">Opakované emaily</div>
+                        <div class="acc-sub">B2B, follow-up, retail update — jednou nastavit, pak jen spouštět</div>
+                    </div>
+                    <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="acc-body">
+                    <div class="acc-body-inner">
+                        <p><strong>Nastavení (jednou):</strong> Vytvořte Claude Projekt "VITAR — B2B Emaily". Do Custom Instructions dejte: kdo jste, produkty, tón, formát. Do Knowledge: cenník, produktové listy.</p>
+                        <p><strong>Používání (pokaždé):</strong> "Napiš email pro lékárnu XY o novém produktu Maxivita Zinc." — Hotovo za 30 sekund.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="acc-item">
+                <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+                    <div class="acc-icon" style="background:var(--accent-soft);color:var(--accent)">📋</div>
+                    <div class="acc-info">
+                        <div class="acc-title">Produktové karty</div>
+                        <div class="acc-sub">Nový produkt → hotová karta podle šablony za minutu</div>
+                    </div>
+                    <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="acc-body">
+                    <div class="acc-body-inner">
+                        <p><strong>Nastavení:</strong> V Cursoru vytvořte projekt "vitar-product-cards". Přidejte šablonu HTML karty a brand rules.</p>
+                        <p><strong>Používání:</strong> "Vytvoř kartu pro Maxivita Magnesium 400mg. Hlavní benefity: svaly, únava, nervový systém." → Agent vygeneruje HTML kartu podle vaší šablony.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="acc-item">
+                <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+                    <div class="acc-icon" style="background:var(--cyan-soft);color:var(--cyan)">🌍</div>
+                    <div class="acc-info">
+                        <div class="acc-title">Export překlady</div>
+                        <div class="acc-sub">CZ materiál → EN/DE/PL se zachováním kontextu trhu</div>
+                    </div>
+                    <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="acc-body">
+                    <div class="acc-body-inner">
+                        <p><strong>Nastavení:</strong> Claude Projekt "Export — DE/EN". Instrukce: ne doslovný překlad, přizpůsobit trhu, EU regulace, zachovat brand name.</p>
+                        <p><strong>Používání:</strong> Vložte CZ text → "Přelož pro německý trh" → hotový překlad přizpůsobený DE kontextu. Bez opakovaného vysvětlování.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="acc-item">
+                <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+                    <div class="acc-icon" style="background:var(--purple-soft);color:var(--purple)">📱</div>
+                    <div class="acc-info">
+                        <div class="acc-title">Social media</div>
+                        <div class="acc-sub">Batch postů podle tónu a kanálu — opakovaně, konzistentně</div>
+                    </div>
+                    <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="acc-body">
+                    <div class="acc-body-inner">
+                        <p><strong>Nastavení:</strong> Claude Projekt "VITAR Social". Instrukce: brand voice, cílovky, kanály (IG/FB/LinkedIn), formát postů. Knowledge: úspěšné minulé posty.</p>
+                        <p><strong>Používání:</strong> "10 IG postů na téma jarní vitamíny" → batch postů s hashtags, CTA a návrhy vizuálů. Konzistentní tón bez opakovaného briefu.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tip-box" style="margin-top: 24px;">
+            <span>💡</span>
+            <div><strong>Pravidlo OHIO:</strong> Pokud vám AI poradila dobře a vy to budete potřebovat znovu — <strong>nevyhazujte ten chat</strong>. Uložte si prompt, vytvořte projekt, nastavte instrukce. Příště to bude na 30 sekund místo 20 minut.</div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== TAB 4: AI PAKT ==================== -->
+<div id="tab-pakt" class="tab-content">
+    <div class="wrap">
+        <div class="section-header" style="padding-top: 40px;">
+            <h2>AI Pakt — Pravidla hry</h2>
+            <p>AI @ VITAR Program · 7 modulů · Schváleno vedením 11. 3. 2026</p>
+        </div>
+
+        <div class="quote-block">
+            <p><strong>Používej AI na svou práci. Nesdílej s ní nic, co bys nenapsal na firemní nástěnku.</strong></p>
+        </div>
+
+        <div class="section-header">
+            <h2>Dvě kategorie — základ všeho</h2>
+        </div>
+
+        <div class="rules-grid">
+            <div class="rule-card allowed">
+                <div class="rule-icon">✅</div>
+                <div class="rule-text">
+                    <strong>Kategorie 1: Mimo firemní data → volně</strong><br>
+                    Prezentace, texty, emaily, překlady, marketing, research, SOP, brand materiály. Povoleno okamžitě.
+                </div>
+            </div>
+            <div class="rule-card forbidden">
+                <div class="rule-icon">🔴</div>
+                <div class="rule-text">
+                    <strong>Kategorie 2: Firemní data → release proces</strong><br>
+                    Receptury, finanční výkazy, mzdy, CRM, cenové podmínky, kapacitní plány. Musí projít 3-fázovou metodikou.
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2>Co smíte vs. co ne</h2>
+        </div>
+
+        <div class="card-grid card-grid-2">
+            <div class="card" style="border-left: 3px solid var(--green);">
+                <h3 style="color:var(--green);">DO AI MŮŽETE</h3>
+                <ul style="font-size:0.88rem; color:var(--text-muted); padding-left:18px; margin-top:8px;">
+                    <li>Emaily, nabídky, prezentace</li>
+                    <li>Marketing texty, posty, content</li>
+                    <li>Překlady</li>
+                    <li>Research, analýzy trhu</li>
+                    <li>SOP, návody, brand materiály</li>
+                    <li>Veřejně dostupné informace</li>
+                </ul>
+            </div>
+            <div class="card" style="border-left: 3px solid var(--red);">
+                <h3 style="color:var(--red);">DO AI NIKDY</h3>
+                <ul style="font-size:0.88rem; color:var(--text-muted); padding-left:18px; margin-top:8px;">
+                    <li>Receptury, složení, výrobní postupy</li>
+                    <li>Finanční výkazy, marže, ceny pro partnery</li>
+                    <li>Mzdy, smlouvy, osobní údaje</li>
+                    <li>Zákaznické databáze, CRM exporty</li>
+                    <li>Kapacitní plány výroby</li>
+                    <li>Obchodní smlouvy, exkluzivity</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2>Schvalovací flow</h2>
+        </div>
+
+        <div class="flow-steps">
+            <div class="flow-step">
+                <div class="flow-num" style="background:var(--green-soft);color:var(--green);">A</div>
+                <div class="flow-text"><strong>Chci Claude / Gemini</strong> ($20/měs) → přímý nadřízený → workshop → licencia</div>
+            </div>
+            <div class="flow-step">
+                <div class="flow-num" style="background:var(--accent-soft);color:var(--accent);">B</div>
+                <div class="flow-text"><strong>Chci Cursor</strong> ($20/měs) → Juraj + Radim → IT povolí instalaci</div>
+            </div>
+            <div class="flow-step">
+                <div class="flow-num" style="background:var(--red-soft);color:var(--red);">C</div>
+                <div class="flow-text"><strong>Chci buildovat interní nástroj</strong> → scope dokument → Tomáš + Radim → release proces</div>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2>Release proces (Kategorie 2)</h2>
+        </div>
+
+        <div class="flow-steps">
+            <div class="flow-step">
+                <div class="flow-num">0</div>
+                <div class="flow-text"><strong>Scope dokument</strong> — Co, proč, jaká data, role. 1 stránka.</div>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <div class="flow-num">1</div>
+                <div class="flow-text"><strong>ALFA</strong> — Sandbox. Žádná firemní data.</div>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <div class="flow-num">2</div>
+                <div class="flow-text"><strong>BETA</strong> — Cross-model review + OWASP security check.</div>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step">
+                <div class="flow-num">3</div>
+                <div class="flow-text"><strong>Sign-off</strong> — Product Owner + Security (Radim).</div>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-step" style="border-color: var(--green);">
+                <div class="flow-num" style="background:var(--green-soft);color:var(--green);">✓</div>
+                <div class="flow-text"><strong>LIVE</strong> — Napojení na firemní DB, onboarding, monitoring.</div>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2>7 modulů AI @ VITAR</h2>
+        </div>
+
+        <div class="card-grid" style="gap:8px;">
+            <div class="card" style="padding:16px 20px; display:flex; gap:14px; align-items:center;">
+                <div style="background:var(--accent-soft);color:var(--accent);width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;">1</div>
+                <div><strong>AI Mindset</strong> — <span style="color:var(--text-muted);font-size:0.88rem;">Proč musíme šlapat. GymBeam, EU data, modely adopce.</span></div>
+            </div>
+            <div class="card" style="padding:16px 20px; display:flex; gap:14px; align-items:center;">
+                <div style="background:var(--accent-soft);color:var(--accent);width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;">2</div>
+                <div><strong>Nástroje & Hardware</strong> — <span style="color:var(--text-muted);font-size:0.88rem;">Cursor, Claude Code, GitHub, Vercel, Railway.</span></div>
+            </div>
+            <div class="card" style="padding:16px 20px; display:flex; gap:14px; align-items:center;">
+                <div style="background:var(--red-soft);color:var(--red);width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;">3</div>
+                <div><strong>Dvě kategorie</strong> — <span style="color:var(--text-muted);font-size:0.88rem;">Co smíte volně, co musí projít procesem.</span></div>
+            </div>
+            <div class="card" style="padding:16px 20px; display:flex; gap:14px; align-items:center;">
+                <div style="background:var(--accent-soft);color:var(--accent);width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;">4</div>
+                <div><strong>Release proces & GitHub</strong> — <span style="color:var(--text-muted);font-size:0.88rem;">Alfa → Beta → Live.</span></div>
+            </div>
+            <div class="card" style="padding:16px 20px; display:flex; gap:14px; align-items:center;">
+                <div style="background:var(--accent-soft);color:var(--accent);width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;">5</div>
+                <div><strong>Lidé & role</strong> — <span style="color:var(--text-muted);font-size:0.88rem;">Sponsor, garant, architekt, championi.</span></div>
+            </div>
+            <div class="card" style="padding:16px 20px; display:flex; gap:14px; align-items:center;">
+                <div style="background:var(--accent-soft);color:var(--accent);width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;">6</div>
+                <div><strong>Jak začít</strong> — <span style="color:var(--text-muted);font-size:0.88rem;">Schvalovací flow, Teams kanál, rituály.</span></div>
+            </div>
+            <div class="card" style="padding:16px 20px; display:flex; gap:14px; align-items:center;">
+                <div style="background:var(--accent-soft);color:var(--accent);width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;">7</div>
+                <div><strong>Plán & budget</strong> — <span style="color:var(--text-muted);font-size:0.88rem;">~22 000 CZK/měs za 25 licencí. 200+ hodin úspora.</span></div>
+            </div>
+        </div>
+
+        <div class="info-box" style="margin-top: 16px;">
+            <span>❓</span>
+            <div>Nevíte jestli něco smíte? <strong>Zeptejte se v Teams kanálu AI @ VITAR.</strong> Lepší se zeptat než dát recepturu do AI.</div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== TAB 5: USE CASES ==================== -->
+<div id="tab-usecases" class="tab-content">
+    <div class="wrap">
+        <div class="section-header" style="padding-top: 40px;">
+            <h2>Use Cases</h2>
+            <p>Rostoucí knihovna příkladů. Budou přibývat po každém workshopu a z vaší praxe.</p>
+        </div>
+
+        <div class="info-box" style="margin-bottom: 24px;">
+            <span>📌</span>
+            <div>Tato sekce bude <strong>průběžně růst</strong>. Po workshopu sem přidáme příklady z vašich otázek a reálné use cases z práce.</div>
+        </div>
+
+        <div class="accordion">
+            <div class="acc-item">
+                <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+                    <div class="acc-icon" style="background:var(--accent-soft);color:var(--accent)">📦</div>
+                    <div class="acc-info">
+                        <div class="acc-title">Produktový manažér</div>
+                        <div class="acc-sub">Produktové karty, portfólio, analýzy, regulatorní check</div>
+                    </div>
+                    <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="acc-body">
+                    <div class="acc-body-inner">
+                        <ul>
+                            <li><strong>Produktová karta pro e-shop</strong> — HTML s popisem, benefity, nutričními hodnotami, SEO</li>
+                            <li><strong>Porovnávací tabulka</strong> — Váš produkt vs. konkurence</li>
+                            <li><strong>Portfolio přehled</strong> — Interaktivní přehled celé produktové řady</li>
+                            <li><strong>Briefing pro retail</strong> — Prezentace pro lékárnu / retail řetězec</li>
+                            <li><strong>Regulatorní check</strong> — Kontrola claimů, soulad s legislativou</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="acc-item">
+                <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+                    <div class="acc-icon" style="background:var(--purple-soft);color:var(--purple)">📢</div>
+                    <div class="acc-info">
+                        <div class="acc-title">Marketing</div>
+                        <div class="acc-sub">Kampaně, landing pages, social media, emaily, blog</div>
+                    </div>
+                    <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="acc-body">
+                    <div class="acc-body-inner">
+                        <ul>
+                            <li><strong>Kampaňová landing page</strong> — Kompletní stránka s CTA, countdown, responsivní</li>
+                            <li><strong>Email kampaň</strong> — Welcome, abandoned cart, post-purchase série</li>
+                            <li><strong>Social media batch</strong> — 10+ postů naráz pro IG/FB/LinkedIn</li>
+                            <li><strong>Blog článek</strong> — SEO optimalizovaný pro vitar.cz</li>
+                            <li><strong>Newsletter template</strong> — HTML, responsivní, brand konzistentní</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="acc-item">
+                <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+                    <div class="acc-icon" style="background:var(--cyan-soft);color:var(--cyan)">🌍</div>
+                    <div class="acc-info">
+                        <div class="acc-title">Export</div>
+                        <div class="acc-sub">Multijazyčné materiály, B2B dokumenty, tržní analýzy</div>
+                    </div>
+                    <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="acc-body">
+                    <div class="acc-body-inner">
+                        <ul>
+                            <li><strong>Multijazyčné produktové listy</strong> — CZ → EN, DE, PL, HU</li>
+                            <li><strong>B2B nabídka pro distributora</strong> — Přizpůsobená zemi a partnerovi</li>
+                            <li><strong>Tržní analýza</strong> — Doplňky stravy v cílové zemi</li>
+                            <li><strong>Veletrh materiály</strong> — V jazyce trhu, claim compliance</li>
+                            <li><strong>Email v cizím jazyce</strong> — Kulturně přizpůsobený B2B email</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="acc-item">
+                <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+                    <div class="acc-icon" style="background:var(--yellow-soft);color:var(--yellow)">🎨</div>
+                    <div class="acc-info">
+                        <div class="acc-title">Kreativa & Design</div>
+                        <div class="acc-sub">Bannery, šablony, brand assets</div>
+                    </div>
+                    <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="acc-body">
+                    <div class="acc-body-inner">
+                        <ul>
+                            <li><strong>Banner sady</strong> — 10+ variant pro různé formáty a kanály</li>
+                            <li><strong>Email template</strong> — HTML newsletter, responsivní</li>
+                            <li><strong>Social media templates</strong> — Opakovaně použitelné šablony</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="acc-item">
+                <div class="acc-header" onclick="this.parentElement.classList.toggle('open')">
+                    <div class="acc-icon" style="background:var(--green-soft);color:var(--green)">⚙️</div>
+                    <div class="acc-info">
+                        <div class="acc-title">Vývoj & Interní nástroje</div>
+                        <div class="acc-sub">Kalkulačky, formuláře, dashboardy</div>
+                    </div>
+                    <svg class="acc-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="acc-body">
+                    <div class="acc-body-inner">
+                        <ul>
+                            <li><strong>Cenová kalkulačka</strong> — Webová app, automatický rozpočet</li>
+                            <li><strong>Vzorky app</strong> — Formulář → admin → PDF pro sklad</li>
+                            <li><strong>Dashboard</strong> — Vizualizace dat bez Power BI licence</li>
+                        </ul>
+                        <div class="tip-box">
+                            <span>⚠️</span>
+                            <div>Interní nástroje s firemními daty → <strong>release proces</strong> (viz AI Pakt).</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== TAB 6: CHEATSHEET ==================== -->
+<div id="tab-cheatsheet" class="tab-content">
+    <div class="wrap">
+        <div class="section-header" style="padding-top: 40px;">
+            <h2>Cheatsheet</h2>
+            <p>Copy-paste prompty. Upravte si je pro vaše produkty a projekty. Bude růst.</p>
+        </div>
+
+        <div class="tip-box" style="margin-bottom: 24px;">
+            <span>💡</span>
+            <div><strong>OHIO tip:</strong> Nepoužívejte tyto prompty opakovaně v novém chatu. Vytvořte si z nich <strong>Projekt</strong> v Claude/ChatGPT — a příště jen řekněte co potřebujete, bez celého briefu.</div>
+        </div>
+
+        <div class="prompt-box">
+            <div class="prompt-box-header">
+                <span class="prompt-box-label">Produktová karta pro e-shop</span>
+                <button class="copy-btn" onclick="copyPrompt(this)">Kopírovat</button>
+            </div>
+            <div class="prompt-box-content">Jsem produktový manažér ve farmaceutické firmě VITAR. Vytvoř HTML produktovou kartu pro doplněk stravy.
+
+Produkt: [NÁZEV]
+Hlavní ingredience: [INGREDIENCE]
+Benefity: [3-4 body]
+Cílová skupina: [KDO]
+
+Zahrň: název, claim, bullet points, nutriční tabulku, dávkování, upozornění.
+Design: čistý, moderní, responsivní. Barvy VITAR (zelená #059669, bílá).
+SEO: meta title, meta description, JSON-LD.</div>
+        </div>
+
+        <div class="prompt-box">
+            <div class="prompt-box-header">
+                <span class="prompt-box-label">Marketing landing page</span>
+                <button class="copy-btn" onclick="copyPrompt(this)">Kopírovat</button>
+            </div>
+            <div class="prompt-box-content">Vytvoř landing page pro kampaň [NÁZEV KAMPANĚ] značky VITAR.
+
+Produkty: [PRODUKTY]
+Cílovka: [CÍLOVÁ SKUPINA]
+
+Sekce: 1) Hero s headlinem a CTA, 2) 3 produkty s benefity, 3) Proč VITAR, 4) Akční nabídka, 5) Footer s kontaktem na vitar.cz.
+Design: moderní, důvěryhodný, mobilní-first. Barvy VITAR.</div>
+        </div>
+
+        <div class="prompt-box">
+            <div class="prompt-box-header">
+                <span class="prompt-box-label">Export překlad (OHIO-ready)</span>
+                <button class="copy-btn" onclick="copyPrompt(this)">Kopírovat</button>
+            </div>
+            <div class="prompt-box-content">Přelož tento CZ produktový materiál do [EN / DE / PL].
+
+Pravidla:
+- Ne doslovný překlad — přizpůsob trhu
+- B2B kontext, formální tón
+- Zachovej HTML formátování
+- Health claimy dle EU regulace (1924/2006)
+- Měrné jednotky podle cílové země
+- Brand "VITAR" a "Maxivita" nepřekládat
+
+Zdrojový text:
+[VÁŠ TEXT]</div>
+        </div>
+
+        <div class="prompt-box">
+            <div class="prompt-box-header">
+                <span class="prompt-box-label">B2B nabídka pro distributora</span>
+                <button class="copy-btn" onclick="copyPrompt(this)">Kopírovat</button>
+            </div>
+            <div class="prompt-box-content">Vytvoř B2B nabídku pro distributora v [ZEMĚ].
+
+Firma: VITAR s.r.o. — český výrobce doplňků stravy
+Portfolio: Maxivita, VITAR exkluziv, private label / OEM
+Partner: [TYP — lékárna / distributor / retail]
+
+Zahrň: úvod firmy, top 5 produktů, proč VITAR, další kroky.
+Jazyk: [CZ / EN / DE]
+Formát: HTML (tisknutelné A4)</div>
+        </div>
+
+        <div class="prompt-box">
+            <div class="prompt-box-header">
+                <span class="prompt-box-label">Social media batch</span>
+                <button class="copy-btn" onclick="copyPrompt(this)">Kopírovat</button>
+            </div>
+            <div class="prompt-box-content">Vytvoř 10 postů pro [Instagram / Facebook / LinkedIn].
+
+Značka: VITAR / Maxivita
+Téma: [TÉMA]
+Tón: [přátelský / expertní / motivační]
+Cílovka: [CÍLOVÁ SKUPINA]
+
+Pro každý post: text, 5-8 hashtagů, CTA, návrh vizuálu.
+Formát: Markdown tabulka.</div>
+        </div>
+
+        <div class="prompt-box">
+            <div class="prompt-box-header">
+                <span class="prompt-box-label">Interní nástroj / kalkulačka</span>
+                <button class="copy-btn" onclick="copyPrompt(this)">Kopírovat</button>
+            </div>
+            <div class="prompt-box-content">Vytvoř webovou kalkulačku pro [ÚČEL].
+
+Vstupy: [VSTUP 1], [VSTUP 2], [VSTUP 3]
+Logika: [JAK SE POČÍTÁ]
+Výstup: [CO UŽIVATEL UVIDÍ]
+
+Tech: statická HTML + JS, responsivní, VITAR branding, tisknutelný výstup.</div>
+        </div>
+
+        <div class="section-header">
+            <h2>Zlatá pravidla</h2>
+        </div>
+
+        <div class="card-grid card-grid-2">
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <h3>Buďte konkrétní</h3>
+                <p>Čím víc kontextu, tím lepší výsledek. Říkejte co, pro koho, v jakém formátu.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔄</div>
+                <h3>Iterujte, neopakujte</h3>
+                <p>"Zkrať to", "Změň barvy". Nemusíte psát celý prompt znovu.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📂</div>
+                <h3>OHIO — vytvořte Projekt</h3>
+                <p>Fungovalo to? Udělejte z toho Project. Příště na 30 sekund.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🆕</div>
+                <h3>Nový topic = nový chat</h3>
+                <p>Nepřetěžujte konverzaci. Nové téma? Nová konverzace v rámci projektu.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== TAB 7: UPDATES ==================== -->
+<div id="tab-updates" class="tab-content">
+    <div class="wrap">
+        <div class="section-header" style="padding-top: 40px;">
+            <h2>Updates</h2>
+            <p>Novinky, odpovědi na vaše otázky, nové příklady. Vracejte se sem.</p>
+        </div>
+
+        <div class="update-item" style="border-left: 3px solid var(--accent);">
+            <div class="update-date">9. dubna 2026</div>
+            <div class="update-title">Workshop #1 — Mindset Shift</div>
+            <div class="update-text">
+                První workshop s produktovým týmem VITAR. Live demo, diskuze, první kroky. Odpovědi na otázky z workshopu budou přidány sem.
+            </div>
+        </div>
+
+        <div class="empty-state" style="margin-top: 40px;">
+            <div class="empty-icon">📝</div>
+            <h3>Tady budou přibývat novinky</h3>
+            <p>Po workshopu sem přidáme odpovědi na vaše otázky, nové use cases, tipy a příklady z praxe. Sledujte tuto záložku.</p>
+        </div>
+
+        <div class="section-header">
+            <h2>Kontakty</h2>
+        </div>
+
+        <div class="card-grid card-grid-3">
+            <div class="card">
+                <h3>Juraj Giacko</h3>
+                <p style="font-size:0.82rem;color:var(--accent);font-weight:600;margin-bottom:4px;">AI Architekt</p>
+                <p>Nastavuje nástroje, školí, builduje.</p>
+            </div>
+            <div class="card">
+                <h3>Radim Lorenc</h3>
+                <p style="font-size:0.82rem;color:var(--accent);font-weight:600;margin-bottom:4px;">IT & Security</p>
+                <p>Schvaluje nástroje, bezpečnost.</p>
+            </div>
+            <div class="card">
+                <h3>Tomáš Červinka</h3>
+                <p style="font-size:0.82rem;color:var(--accent);font-weight:600;margin-bottom:4px;">CEO & Sponsor</p>
+                <p>Strategické rozhodnutí, budget.</p>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 24px; text-align: center; background: var(--accent-soft); border-color: rgba(37,99,235,0.15);">
+            <p style="font-size: 1rem; font-weight: 600; color: var(--accent);">Teams kanál: AI @ VITAR</p>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 4px;">Otázky, tipy, showcase — všechno na jednom místě.</p>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div style="text-align:center; padding:40px 20px; color:var(--text-dim); font-size:0.82rem; border-top: 1px solid var(--border);">
+    <strong>AI</strong> @ <strong>VITAR</strong> by <strong>JURAJ.DIGITAL</strong> · 2026 · Živý dokument
+</div>
+
+<script>
+document.querySelectorAll('[data-tab]').forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        const tab = link.dataset.tab;
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('[data-tab]').forEach(l => l.classList.remove('active'));
+        document.getElementById('tab-' + tab).classList.add('active');
+        document.querySelectorAll(`[data-tab="${tab}"]`).forEach(l => l.classList.add('active'));
+        document.querySelector('.nav-mobile').classList.remove('open');
+        window.scrollTo(0, 0);
+    });
+});
+
+function copyPrompt(btn) {
+    const content = btn.closest('.prompt-box').querySelector('.prompt-box-content').textContent;
+    navigator.clipboard.writeText(content.trim()).then(() => {
+        btn.classList.add('copied');
+        btn.textContent = 'Zkopírováno!';
+        setTimeout(() => { btn.classList.remove('copied'); btn.textContent = 'Kopírovat'; }, 2000);
+    });
+}
+</script>
+
+</body>
+</html>

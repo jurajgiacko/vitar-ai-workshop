@@ -46,25 +46,41 @@
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
         }
-        .nav-inner {
+        .nav-top-row {
             max-width: 800px; margin: 0 auto; padding: 0 20px;
-            display: flex; align-items: center; justify-content: space-between; height: 56px;
+            display: flex; align-items: center; justify-content: space-between; height: 44px;
         }
         .nav-brand { font-weight: 800; font-size: 1.05rem; color: var(--text); text-decoration: none; letter-spacing: -0.3px; }
         .nav-brand span { color: var(--accent); }
-        .nav-links { display: flex; gap: 4px; list-style: none; }
-        .nav-links a {
-            font-size: 0.8rem; font-weight: 600; color: var(--text-muted);
-            text-decoration: none; padding: 6px 10px; border-radius: 8px; transition: all 0.15s;
+        .nav-actions { display: flex; align-items: center; gap: 6px; }
+        .nav-dl-btn {
+            font-size: 0.68rem; font-weight: 700; color: var(--text-dim); background: var(--bg-surface);
+            border: 1px solid var(--border); padding: 4px 10px; border-radius: 6px; cursor: pointer;
+            transition: all 0.15s; text-transform: uppercase; letter-spacing: 0.3px;
         }
-        .nav-links a:hover { color: var(--text); background: var(--bg-surface); }
-        .nav-links a.active { color: var(--accent); background: var(--accent-soft); }
+        .nav-dl-btn:hover { color: var(--text-muted); background: rgba(0,0,0,0.04); }
+        .nav-tabs-row {
+            overflow-x: auto; -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; -ms-overflow-style: none;
+        }
+        .nav-tabs-row::-webkit-scrollbar { display: none; }
+        .nav-tabs-inner {
+            max-width: 800px; margin: 0 auto; padding: 0 16px 6px;
+            display: flex; gap: 2px; white-space: nowrap;
+        }
+        .nav-tabs-inner a {
+            font-size: 0.75rem; font-weight: 600; color: var(--text-muted);
+            text-decoration: none; padding: 5px 10px; border-radius: 7px; transition: all 0.15s;
+            flex-shrink: 0;
+        }
+        .nav-tabs-inner a:hover { color: var(--text); background: var(--bg-surface); }
+        .nav-tabs-inner a.active { color: var(--accent); background: var(--accent-soft); }
         .nav-hamburger {
             display: none; background: none; border: none; cursor: pointer; padding: 8px; color: var(--text);
         }
         .nav-hamburger svg { width: 24px; height: 24px; }
         .nav-mobile {
-            display: none; position: absolute; top: 56px; left: 0; right: 0;
+            display: none; position: absolute; top: 80px; left: 0; right: 0;
             background: rgba(255,255,255,0.97); backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border); padding: 12px 20px 16px;
             flex-direction: column; gap: 4px;
@@ -242,8 +258,9 @@
         .empty-state p { font-size: 0.92rem; max-width: 400px; margin: 0 auto; }
 
         @media (max-width: 640px) {
-            .nav-links { display: none; }
+            .nav-tabs-row { display: none; }
             .nav-hamburger { display: block; }
+            .nav-dl-btn { display: none; }
             .card-grid-2, .card-grid-3 { grid-template-columns: 1fr; }
             .rules-grid { grid-template-columns: 1fr; }
             .compare-table { font-size: 0.82rem; }
@@ -256,9 +273,18 @@
 <body>
 
 <nav class="top-nav">
-    <div class="nav-inner">
+    <div class="nav-top-row">
         <a class="nav-brand" href="#"><span>AI</span> @ VITAR</a>
-        <div class="nav-links">
+        <div class="nav-actions">
+            <button class="nav-dl-btn" onclick="downloadMD()">MD</button>
+            <button class="nav-dl-btn" onclick="downloadJSON()">JSON</button>
+            <button class="nav-hamburger" onclick="document.querySelector('.nav-mobile').classList.toggle('open')">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+    </div>
+    <div class="nav-tabs-row">
+        <div class="nav-tabs-inner">
             <a href="#" class="active" data-tab="mindset">Mindset</a>
             <a href="#" data-tab="compare">Chat vs Agent</a>
             <a href="#" data-tab="projekty">Projekty & OHIO</a>
@@ -268,9 +294,6 @@
             <a href="#" data-tab="starterkit">Starter Kit</a>
             <a href="#" data-tab="updates">Updates</a>
         </div>
-        <button class="nav-hamburger" onclick="document.querySelector('.nav-mobile').classList.toggle('open')">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
     </div>
     <div class="nav-mobile">
         <a href="#" class="active" data-tab="mindset">Mindset</a>
@@ -281,6 +304,10 @@
         <a href="#" data-tab="cheatsheet">Cheatsheet</a>
         <a href="#" data-tab="starterkit">Starter Kit</a>
         <a href="#" data-tab="updates">Updates</a>
+        <div style="border-top:1px solid var(--border); margin-top:8px; padding-top:8px; display:flex; gap:8px;">
+            <button class="nav-dl-btn" onclick="downloadMD()" style="display:block;">MD</button>
+            <button class="nav-dl-btn" onclick="downloadJSON()" style="display:block;">JSON</button>
+        </div>
     </div>
 </nav>
 
@@ -1620,6 +1647,143 @@ function switchLang(lang, btn) {
     });
     btn.style.background = 'var(--accent-soft)';
     btn.style.color = 'var(--accent)';
+}
+
+function extractPageData() {
+    const tabs = [
+        { id: 'mindset', name: 'Mindset' },
+        { id: 'compare', name: 'Chat vs Agent' },
+        { id: 'projekty', name: 'Projekty & OHIO' },
+        { id: 'pakt', name: 'AI Pakt' },
+        { id: 'usecases', name: 'Use Cases' },
+        { id: 'cheatsheet', name: 'Cheatsheet' },
+        { id: 'starterkit', name: 'Starter Kit' },
+        { id: 'updates', name: 'Updates' }
+    ];
+
+    const data = {
+        title: 'AI @ VITAR — Od chatu k agentům',
+        source: window.location.href,
+        exported: new Date().toISOString(),
+        tabs: {}
+    };
+
+    tabs.forEach(tab => {
+        const el = document.getElementById('tab-' + tab.id);
+        if (!el) return;
+        const tabData = { name: tab.name, sections: [], prompts: [] };
+
+        el.querySelectorAll('.section-header').forEach(sh => {
+            const h2 = sh.querySelector('h2');
+            const p = sh.querySelector('p');
+            if (h2) tabData.sections.push({
+                heading: h2.textContent.trim(),
+                description: p ? p.textContent.trim() : ''
+            });
+        });
+
+        el.querySelectorAll('.prompt-box').forEach(pb => {
+            const label = pb.querySelector('.prompt-box-label');
+            const content = pb.querySelector('.prompt-box-content');
+            if (label && content) {
+                tabData.prompts.push({
+                    name: label.textContent.trim(),
+                    prompt: content.textContent.trim()
+                });
+            }
+        });
+
+        el.querySelectorAll('.acc-item').forEach(acc => {
+            const title = acc.querySelector('.acc-title');
+            const sub = acc.querySelector('.acc-sub');
+            const body = acc.querySelector('.acc-body-inner');
+            if (title) {
+                const item = {
+                    title: title.textContent.trim(),
+                    subtitle: sub ? sub.textContent.trim() : '',
+                    content: body ? body.textContent.trim().substring(0, 2000) : ''
+                };
+                const prompt = acc.querySelector('.prompt-box-content');
+                if (prompt) item.prompt = prompt.textContent.trim();
+                tabData.sections.push(item);
+            }
+        });
+
+        el.querySelectorAll('.compare-table').forEach(table => {
+            const rows = [];
+            table.querySelectorAll('tr').forEach(tr => {
+                const cells = [];
+                tr.querySelectorAll('th, td').forEach(c => cells.push(c.textContent.trim()));
+                rows.push(cells);
+            });
+            tabData.sections.push({ type: 'table', rows });
+        });
+
+        data.tabs[tab.id] = tabData;
+    });
+
+    return data;
+}
+
+function downloadJSON() {
+    const data = extractPageData();
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'ai-vitar-workshop.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
+}
+
+function downloadMD() {
+    const data = extractPageData();
+    let md = `# ${data.title}\n\n`;
+    md += `> Exported: ${new Date().toLocaleDateString('cs-CZ')} | Source: ${data.source}\n\n---\n\n`;
+
+    const tabOrder = ['mindset', 'compare', 'projekty', 'pakt', 'usecases', 'cheatsheet', 'starterkit', 'updates'];
+
+    tabOrder.forEach(tabId => {
+        const tab = data.tabs[tabId];
+        if (!tab) return;
+        md += `## ${tab.name}\n\n`;
+
+        tab.sections.forEach(s => {
+            if (s.type === 'table') {
+                s.rows.forEach((row, i) => {
+                    md += '| ' + row.join(' | ') + ' |\n';
+                    if (i === 0) md += '| ' + row.map(() => '---').join(' | ') + ' |\n';
+                });
+                md += '\n';
+            } else if (s.heading) {
+                md += `### ${s.heading}\n`;
+                if (s.description) md += `${s.description}\n`;
+                md += '\n';
+            } else if (s.title) {
+                md += `### ${s.title}\n`;
+                if (s.subtitle) md += `*${s.subtitle}*\n\n`;
+                if (s.content) md += `${s.content.substring(0, 1500)}\n\n`;
+                if (s.prompt) md += `\`\`\`\n${s.prompt}\n\`\`\`\n\n`;
+            }
+        });
+
+        if (tab.prompts.length > 0) {
+            md += `### Prompty\n\n`;
+            tab.prompts.forEach(p => {
+                md += `#### ${p.name}\n\n\`\`\`\n${p.prompt}\n\`\`\`\n\n`;
+            });
+        }
+
+        md += '---\n\n';
+    });
+
+    md += `*AI @ VITAR by JURAJ.DIGITAL · 2026 · Živý dokument*\n`;
+
+    const blob = new Blob([md], { type: 'text/markdown' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'ai-vitar-workshop.md';
+    a.click();
+    URL.revokeObjectURL(a.href);
 }
 </script>
 

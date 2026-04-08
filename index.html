@@ -1222,15 +1222,21 @@ Tech: statická HTML + JS, responsivní, VITAR branding, tisknutelný výstup.</
         <!-- UNIVERZALNI META-PROMPT -->
         <div class="section-header">
             <h2>Univerzální meta-prompt</h2>
-            <p>Funguje pro jakoukoli roli. Upravte zvýrazněná pole a spusťte.</p>
+            <p>Funguje pro jakoukoli roli. Upravte zvýrazněná pole a spusťte. K dispozici v češtině i angličtině.</p>
         </div>
 
-        <div class="prompt-box" style="border: 2px solid rgba(124,58,237,0.2);">
-            <div class="prompt-box-header" style="background: var(--purple-soft);">
-                <span class="prompt-box-label" style="color: var(--purple);">Meta-prompt — vytvoří váš AI Projekt</span>
-                <button class="copy-btn" onclick="copyPrompt(this)">Kopírovat</button>
-            </div>
-            <div class="prompt-box-content">Jsi expert na prompt engineering. Znáš všechny pravidla promptování a způsoby, jak psát efektivní prompty. Máš nastudované všechny promptovací techniky a vždy vybereš tu správnou.
+        <div style="display:flex; gap:4px; margin-bottom: 12px;">
+            <button class="lang-toggle active" onclick="switchLang('cs', this)" style="padding:6px 16px; border-radius:8px; font-size:0.82rem; font-weight:600; cursor:pointer; border:1px solid var(--border); background:var(--accent-soft); color:var(--accent); transition:all 0.15s;">Česky</button>
+            <button class="lang-toggle" onclick="switchLang('en', this)" style="padding:6px 16px; border-radius:8px; font-size:0.82rem; font-weight:600; cursor:pointer; border:1px solid var(--border); background:var(--bg-card); color:var(--text-muted); transition:all 0.15s;">English</button>
+        </div>
+
+        <div id="meta-prompt-cs" class="lang-block">
+            <div class="prompt-box" style="border: 2px solid rgba(124,58,237,0.2);">
+                <div class="prompt-box-header" style="background: var(--purple-soft);">
+                    <span class="prompt-box-label" style="color: var(--purple);">Meta-prompt CZ — vytvoří váš AI Projekt</span>
+                    <button class="copy-btn" onclick="copyPrompt(this)">Kopírovat</button>
+                </div>
+                <div class="prompt-box-content">Jsi expert na prompt engineering. Znáš všechny pravidla promptování a způsoby, jak psát efektivní prompty. Máš nastudované všechny promptovací techniky a vždy vybereš tu správnou.
 
 Potřebuji, abys mi vytvořil instrukce pro [POPIS ROLE — např. "Produktový manažér VITAR — doplňky stravy"].
 
@@ -1246,6 +1252,32 @@ Někdy mu můžu poslat i fotografie, aby věděl, co přesně řeším a co bud
 2. Přemýšlej krok za krokem.
 3. Do promptu přidej podle tvého uvážení vše, co by měl takový expert vědět o [OBOR — např. "marketingu pro doplňky stravy, suplementech, zdravotních claimech, regulaci EU"].
 4. Pomož si vyhledáváním relevantních informací na internetu.</div>
+            </div>
+        </div>
+
+        <div id="meta-prompt-en" class="lang-block" style="display:none;">
+            <div class="prompt-box" style="border: 2px solid rgba(124,58,237,0.2);">
+                <div class="prompt-box-header" style="background: var(--purple-soft);">
+                    <span class="prompt-box-label" style="color: var(--purple);">Meta-prompt EN — creates your AI Project</span>
+                    <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                </div>
+                <div class="prompt-box-content">You are an expert in prompt engineering. You know all the rules and best practices for writing effective prompts. You have studied all prompting techniques and always select the most appropriate one.
+
+I need you to create instructions for [ROLE DESCRIPTION — e.g. "Product Manager at VITAR — dietary supplements company"].
+
+This prompt will help me with [MAIN TASKS — e.g. "product descriptions, website copy, email campaigns and overall content management"].
+
+It will advise me when I need guidance on [DOMAIN — e.g. "copywriting, marketing texts, current trends in dietary supplements"].
+
+We operate in [MARKET — e.g. "EU / DACH region"]. Primary language: [LANGUAGE — e.g. "English"].
+
+Sometimes I may share images so it understands exactly what I'm working on and can suggest the most effective approach.
+
+1. Select the best prompting technique and tell me which one you chose.
+2. Think step by step.
+3. Include in the prompt everything such an expert should know about [INDUSTRY — e.g. "marketing for dietary supplements, nutraceuticals, health claims, EU regulation"].
+4. Use web search to find relevant, up-to-date information.</div>
+            </div>
         </div>
 
         <div class="tip-box" style="margin-top: 16px;">
@@ -1573,9 +1605,21 @@ function copyPrompt(btn) {
     const content = btn.closest('.prompt-box').querySelector('.prompt-box-content').textContent;
     navigator.clipboard.writeText(content.trim()).then(() => {
         btn.classList.add('copied');
-        btn.textContent = 'Zkopírováno!';
-        setTimeout(() => { btn.classList.remove('copied'); btn.textContent = 'Kopírovat'; }, 2000);
+        const origText = btn.textContent;
+        btn.textContent = origText === 'Copy' ? 'Copied!' : 'Zkopírováno!';
+        setTimeout(() => { btn.classList.remove('copied'); btn.textContent = origText; }, 2000);
     });
+}
+
+function switchLang(lang, btn) {
+    document.getElementById('meta-prompt-cs').style.display = lang === 'cs' ? 'block' : 'none';
+    document.getElementById('meta-prompt-en').style.display = lang === 'en' ? 'block' : 'none';
+    document.querySelectorAll('.lang-toggle').forEach(b => {
+        b.style.background = 'var(--bg-card)';
+        b.style.color = 'var(--text-muted)';
+    });
+    btn.style.background = 'var(--accent-soft)';
+    btn.style.color = 'var(--accent)';
 }
 </script>
 

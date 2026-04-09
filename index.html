@@ -292,6 +292,7 @@
             <a href="#" data-tab="pakt">AI Pakt</a>
             <a href="#" data-tab="nastroje">Nástroje</a>
             <a href="#" data-tab="usecases">Příklady</a>
+            <a href="#" data-tab="qa">Q&A</a>
             <a href="#" data-tab="cheatsheet">Cheatsheet</a>
             <a href="#" data-tab="starterkit">Starter Kit</a>
             <a href="#" data-tab="updates">Updates</a>
@@ -304,6 +305,7 @@
         <a href="#" data-tab="pakt">AI Pakt</a>
         <a href="#" data-tab="nastroje">Nástroje</a>
         <a href="#" data-tab="usecases">Příklady</a>
+        <a href="#" data-tab="qa">Q&A</a>
         <a href="#" data-tab="cheatsheet">Cheatsheet</a>
         <a href="#" data-tab="starterkit">Starter Kit</a>
         <a href="#" data-tab="updates">Updates</a>
@@ -1322,10 +1324,15 @@
             </div>
         </div>
 
-        <!-- VAŠE DOTAZY Z DOTAZNÍKU -->
-        <div class="section-header">
-            <h2>Vaše dotazy z dotazníku</h2>
-            <p>Z vašich odpovědí jsme vybrali nejčastější potřeby. Každý případ má konkrétní řešení.</p>
+    </div>
+</div>
+
+<!-- ==================== TAB 6: Q&A ==================== -->
+<div id="tab-qa" class="tab-content">
+    <div class="wrap">
+        <div class="section-header" style="padding-top: 40px;">
+            <h2>Q&A — vaše dotazy</h2>
+            <p>Z dotazníku jsme vybrali nejčastější potřeby. Každý případ má konkrétní řešení.</p>
         </div>
 
         <div class="tip-box" style="margin-bottom: 24px;">
@@ -1749,7 +1756,7 @@ Na konci shrň mix: kolik % edukace vs. produkt vs. engagement.</div>
     </div>
 </div>
 
-<!-- ==================== TAB 6: CHEATSHEET ==================== -->
+<!-- ==================== TAB 7: CHEATSHEET ==================== -->
 <div id="tab-cheatsheet" class="tab-content">
     <div class="wrap">
         <div class="section-header" style="padding-top: 40px;">
@@ -1947,7 +1954,7 @@ Vždy mi vysvětli co vzorec dělá krok po kroku, abych to příště zvládl/a
     </div>
 </div>
 
-<!-- ==================== TAB 7: STARTER KIT ==================== -->
+<!-- ==================== TAB 8: STARTER KIT ==================== -->
 <div id="tab-starterkit" class="tab-content">
     <div class="wrap">
         <div class="section-header" style="padding-top: 40px;">
@@ -2422,7 +2429,8 @@ function extractPageData() {
         { id: 'projekty', name: 'Projekty & OHIO' },
         { id: 'pakt', name: 'AI Pakt' },
         { id: 'nastroje', name: 'Nástroje' },
-        { id: 'usecases', name: 'Příklady & dotazy' },
+        { id: 'usecases', name: 'Příklady' },
+        { id: 'qa', name: 'Q&A' },
         { id: 'cheatsheet', name: 'Cheatsheet' },
         { id: 'starterkit', name: 'Starter Kit' },
         { id: 'updates', name: 'Updates' }
@@ -2521,7 +2529,7 @@ function downloadMD() {
     let md = `# ${data.title}\n\n`;
     md += `> Exported: ${new Date().toLocaleDateString('cs-CZ')} | Source: ${data.source}\n\n---\n\n`;
 
-    const tabOrder = ['mindset', 'compare', 'projekty', 'pakt', 'nastroje', 'usecases', 'cheatsheet', 'starterkit', 'updates'];
+    const tabOrder = ['mindset', 'compare', 'projekty', 'pakt', 'nastroje', 'usecases', 'qa', 'cheatsheet', 'starterkit', 'updates'];
 
     tabOrder.forEach(tabId => {
         const tab = data.tabs[tabId];

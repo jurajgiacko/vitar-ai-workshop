@@ -267,6 +267,7 @@
             .compare-table th, .compare-table td { padding: 8px 10px; }
             .acc-header { padding: 16px 18px; gap: 12px; }
             .acc-body-inner { padding: 0 18px 18px; }
+            footer > div > div:first-child { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -290,10 +291,9 @@
             <a href="#" data-tab="projekty">Projekty & OHIO</a>
             <a href="#" data-tab="pakt">AI Pakt</a>
             <a href="#" data-tab="nastroje">Nástroje</a>
-            <a href="#" data-tab="usecases">Use Cases</a>
+            <a href="#" data-tab="usecases">Příklady</a>
             <a href="#" data-tab="cheatsheet">Cheatsheet</a>
             <a href="#" data-tab="starterkit">Starter Kit</a>
-            <a href="#" data-tab="qa">Q&A</a>
             <a href="#" data-tab="updates">Updates</a>
         </div>
     </div>
@@ -303,10 +303,9 @@
         <a href="#" data-tab="projekty">Projekty & OHIO</a>
         <a href="#" data-tab="pakt">AI Pakt</a>
         <a href="#" data-tab="nastroje">Nástroje</a>
-        <a href="#" data-tab="usecases">Use Cases</a>
+        <a href="#" data-tab="usecases">Příklady</a>
         <a href="#" data-tab="cheatsheet">Cheatsheet</a>
         <a href="#" data-tab="starterkit">Starter Kit</a>
-        <a href="#" data-tab="qa">Q&A</a>
         <a href="#" data-tab="updates">Updates</a>
         <div style="border-top:1px solid var(--border); margin-top:8px; padding-top:8px; display:flex; gap:8px;">
             <button class="nav-dl-btn" onclick="downloadMD()" style="display:block;">MD</button>
@@ -1118,17 +1117,17 @@
     </div>
 </div>
 
-<!-- ==================== TAB 6: USE CASES ==================== -->
+<!-- ==================== TAB 6: PŘÍKLADY & DOTAZY ==================== -->
 <div id="tab-usecases" class="tab-content">
     <div class="wrap">
         <div class="section-header" style="padding-top: 40px;">
-            <h2>Use Cases</h2>
-            <p>Rostoucí knihovna příkladů. Budou přibývat po každém workshopu a z vaší praxe.</p>
+            <h2>Příklady & dotazy</h2>
+            <p>Workflow příklady podle rolí + odpovědi na vaše dotazy z dotazníku. Sekce bude průběžně růst.</p>
         </div>
 
         <div class="info-box" style="margin-bottom: 24px;">
             <span>📌</span>
-            <div>Konkrétní workflow příklady — jak AI nástroje propojit do reálného procesu. Sekce bude průběžně růst.</div>
+            <div>Konkrétní příklady — jak AI nástroje propojit do reálného procesu. Máte další dotaz? <a href="https://app.sli.do/event/pWuJ3ZpNWB9949recnhMzz" target="_blank" style="color:#1e40af; font-weight:600;">Napište ho na Slido →</a></div>
         </div>
 
         <!-- MARKETING -->
@@ -1324,6 +1323,431 @@
                 </div>
             </div>
         </div>
+
+        <!-- VAŠE DOTAZY Z DOTAZNÍKU -->
+        <div class="section-header">
+            <h2>Vaše dotazy z dotazníku</h2>
+            <p>Z vašich odpovědí jsme vybrali nejčastější potřeby. Každý případ má konkrétní řešení.</p>
+        </div>
+
+        <div class="tip-box" style="margin-bottom: 24px;">
+            <span>💡</span>
+            <div>Máte další dotaz? <a href="https://app.sli.do/event/pWuJ3ZpNWB9949recnhMzz" target="_blank" style="color:var(--accent); font-weight:600;">Napište ho na Slido →</a></div>
+        </div>
+
+        <!-- Q1: Monitoring cen -->
+        <details class="accordion" open>
+            <summary>"Chci pravidelně sledovat ceny konkurence a porovnávat produkty"</summary>
+            <div class="accordion-body">
+                <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;"><em>Konkurenční monitoring, cenové průzkumy, sortimentní srovnání</em></p>
+
+                <div class="card-grid card-grid-3" style="margin-bottom:16px;">
+                    <div class="card" style="border-left:3px solid var(--green);">
+                        <h3 style="font-size:0.85rem; color:var(--green);">Úroveň 1 — Jednorázově</h3>
+                        <p>Pošlete AI odkaz na e-shop konkurence + váš ceník. Požádejte o srovnání cen, složení, balení.</p>
+                        <p style="font-size:0.82rem; color:var(--text-dim); margin-top:8px;"><strong>Nástroj:</strong> ChatGPT (browsing) nebo Gemini (Deep Research)</p>
+                    </div>
+                    <div class="card" style="border-left:3px solid var(--accent);">
+                        <h3 style="font-size:0.85rem; color:var(--accent);">Úroveň 2 — Opakovaně</h3>
+                        <p>Vytvořte si Claude Project "Konkurenční monitoring" → nahrajte ceníky, linky, parametry. Pravidelně vkládejte nová data a AI srovná trendy.</p>
+                        <p style="font-size:0.82rem; color:var(--text-dim); margin-top:8px;"><strong>Nástroj:</strong> Claude Projects / ChatGPT Custom GPT</p>
+                    </div>
+                    <div class="card" style="border-left:3px solid var(--purple);">
+                        <h3 style="font-size:0.85rem; color:var(--purple);">Úroveň 3 — Automaticky</h3>
+                        <p>Automatický scraping cen z e-shopů pomocí Apify → data se posílají do Google Sheets → AI vyhodnocuje změny a posílá alert.</p>
+                        <p style="font-size:0.82rem; color:var(--text-dim); margin-top:8px;"><strong>Nástroje:</strong> Apify + Make/n8n + Claude</p>
+                    </div>
+                </div>
+
+                <div class="prompt-box">
+                    <div class="prompt-box-header">
+                        <span class="prompt-box-label">Příklad promptu pro cenový průzkum</span>
+                        <button onclick="copyPrompt(this)">Zkopírovat</button>
+                    </div>
+                    <div class="prompt-box-content">Jsi analytik trhu pro suplementový brand v ČR. Porovnej tyto 3 konkurenční produkty s naším produktem [NÁZEV]:
+
+Konkurent 1: [URL nebo název + cena]
+Konkurent 2: [URL nebo název + cena]
+Náš produkt: [cena, složení, balení]
+
+Vytvoř srovnávací tabulku: cena za denní dávku, klíčové složky, balení, USP. Na závěr doporuč 3 akční body pro naši cenovou strategii.</div>
+                </div>
+            </div>
+        </details>
+
+        <!-- Q2: Analýza trhu -->
+        <details class="accordion">
+            <summary>"Jak udělat kvalitní analýzu trhu / konkurence / trendů?"</summary>
+            <div class="accordion-body">
+                <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;"><em>Market research, trendová analýza, podklady pro strategii</em></p>
+
+                <div class="card" style="border-left:3px solid var(--accent); margin-bottom:16px;">
+                    <h3>Doporučený workflow (3 kroky)</h3>
+                    <ol style="padding-left:18px; font-size:0.9rem;">
+                        <li style="margin-bottom:8px;"><strong>Gemini Deep Research</strong> — zadejte téma, nechte AI prohledat web a zpracovat report. Získáte přehled trhu s reálnými zdroji.</li>
+                        <li style="margin-bottom:8px;"><strong>Claude Project</strong> — nahrajte report z Gemini + vaše interní data (prodeje, marže). Požádejte o analýzu a doporučení specificky pro Vitar.</li>
+                        <li style="margin-bottom:8px;"><strong>Iterujte (zpřesňujte)</strong> — ptejte se dál: "Co mi chybí?", "Jaké jsou rizika?", "Porovnej s EU trhy". Kvalita roste s každou iterací.</li>
+                    </ol>
+                </div>
+
+                <div class="prompt-box">
+                    <div class="prompt-box-header">
+                        <span class="prompt-box-label">Příklad promptu pro trendovou analýzu</span>
+                        <button onclick="copyPrompt(this)">Zkopírovat</button>
+                    </div>
+                    <div class="prompt-box-content">Proveď analýzu trhu [KATEGORIE, např. "sportovní suplementy"] v ČR a SR za rok 2025-2026.
+
+Zaměř se na:
+1. Top 5 trendů v kategorii (s příklady brandů)
+2. Nové ingredience nebo formáty, které rostou
+3. Cenové trendy — kam se posouvá průměrná cena
+4. Co dělají zahraniční brandy, co se u nás zatím neděje
+
+Formát: strukturovaný report s bullet points, ne souvislý text. Na závěr 3 příležitosti konkrétně pro výrobce suplementů.</div>
+                </div>
+            </div>
+        </details>
+
+        <!-- Q3: Automatizace rutiny -->
+        <details class="accordion">
+            <summary>"Chci automatizovat rutinní činnosti — tabulky, maily, reporty"</summary>
+            <div class="accordion-body">
+                <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;"><em>Vyplňování tabulek, odbavování akcí, opakující se operativa</em></p>
+
+                <div class="card-grid card-grid-2" style="margin-bottom:16px;">
+                    <div class="card" style="border-left:3px solid var(--green);">
+                        <h3 style="font-size:0.85rem; color:var(--green);">OHIO — jednou nastav, pak jen používej</h3>
+                        <p>Vytvořte si Claude Project nebo Custom GPT pro opakovaný úkol. Nahrajte šablonu, pravidla, příklady. Příště jen vložíte data → hotovo.</p>
+                        <p style="font-size:0.82rem; margin-top:8px;"><strong>Příklad:</strong> "Event report" — vložíte fotky a poznámky z akce, AI vygeneruje report ve firemní šabloně.</p>
+                    </div>
+                    <div class="card" style="border-left:3px solid var(--purple);">
+                        <h3 style="font-size:0.85rem; color:var(--purple);">Make/n8n — plná automatizace</h3>
+                        <p>Pro procesy, které chcete úplně bez zásahu: data z e-shopu → zpracování → report do e-mailu každé pondělí.</p>
+                        <p style="font-size:0.82rem; margin-top:8px;"><strong>Příklad:</strong> Nová objednávka → Make vytáhne data → AI shrne → pošle notifikaci do Teams.</p>
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <span>💡</span>
+                    <div><strong>Kde začít?</strong> Zapište si tento týden 3 činnosti, které děláte opakovaně a zaberou vám víc než 15 minut. To jsou vaši kandidáti na automatizaci. Viz tab <a href="#" onclick="switchTab('projekty'); return false;" style="color:var(--accent);font-weight:600;">Projekty & OHIO</a>.</div>
+                </div>
+            </div>
+        </details>
+
+        <!-- Q4: Excel -->
+        <details class="accordion">
+            <summary>"Potřebuji pomoc s Excelem — složité vzorce, kontingenční tabulky"</summary>
+            <div class="accordion-body">
+                <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;"><em>Funkce, vzorce, pivot tabulky, analýza dat v tabulkách</em></p>
+
+                <div class="card" style="border-left:3px solid var(--green); margin-bottom:16px;">
+                    <h3>AI je váš nejlepší Excel tutor</h3>
+                    <p>ChatGPT i Claude výborně rozumí Excelu. Popište slovně, co potřebujete, a AI vám napíše hotový vzorec s vysvětlením.</p>
+                </div>
+
+                <div class="card-grid card-grid-2" style="margin-bottom:16px;">
+                    <div class="card">
+                        <h3 style="font-size:0.85rem;">Vzorce a funkce</h3>
+                        <p style="font-size:0.88rem;">"Mám tabulku prodejů v A1:A100 a kategorie v B1:B100. Potřebuji SUMIFS, který sečte prodeje jen pro kategorii 'Sport'."</p>
+                    </div>
+                    <div class="card">
+                        <h3 style="font-size:0.85rem;">Kontingenční tabulky</h3>
+                        <p style="font-size:0.88rem;">"Vysvětli mi krok za krokem, jak vytvořit kontingenční tabulku z těchto dat, kde řádky = zákazník, sloupce = měsíc, hodnoty = tržby."</p>
+                    </div>
+                </div>
+
+                <div class="prompt-box">
+                    <div class="prompt-box-header">
+                        <span class="prompt-box-label">Univerzální Excel prompt</span>
+                        <button onclick="copyPrompt(this)">Zkopírovat</button>
+                    </div>
+                    <div class="prompt-box-content">Jsi Excel expert. Pracuji v Microsoft Excel (česká verze).
+
+Moje data vypadají takto:
+[Popište sloupce nebo vložte screenshot]
+
+Potřebuji:
+[Popište co chcete — vzorec, graf, pivot tabulku, analýzu]
+
+Požadavky:
+- Použij české názvy funkcí (SUMA místo SUM, KDYŽ místo IF atd.)
+- Vysvětli vzorec krok za krokem
+- Pokud existuje jednodušší způsob, navrhni ho</div>
+                </div>
+
+                <div class="tip-box" style="margin-top:12px;">
+                    <span>💡</span>
+                    <div><strong>Pro tip:</strong> V ChatGPT můžete rovnou nahrát .xlsx soubor. AI ho přečte, analyzuje a navrhne řešení přímo nad vašimi daty.</div>
+                </div>
+            </div>
+        </details>
+
+        <!-- Q5: Export / legislativa -->
+        <details class="accordion">
+            <summary>"Potřebuji rychle vyhodnotit exportní příležitosti a porovnat legislativu"</summary>
+            <div class="accordion-body">
+                <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;"><em>Registrace produktů, legislativní požadavky, podklady pro jednání, překlady</em></p>
+
+                <div class="card" style="border-left:3px solid var(--accent); margin-bottom:16px;">
+                    <h3>Claude Project pro každý trh</h3>
+                    <p>Vytvořte si projekt pro každý klíčový trh (např. "Export Polsko", "Export Německo"). Nahrajte:</p>
+                    <ul style="padding-left:18px; font-size:0.9rem; margin-top:8px;">
+                        <li>Legislativní požadavky daného trhu</li>
+                        <li>Vaše registrační dokumenty a šablony</li>
+                        <li>Předchozí komunikaci s klienty (vzory)</li>
+                    </ul>
+                    <p style="margin-top:12px;">Pak můžete rovnou psát: "Připrav podklady pro jednání s [klient] o produktu [X] pro trh [Y]" — a AI má veškerý kontext.</p>
+                </div>
+
+                <div class="prompt-box">
+                    <div class="prompt-box-header">
+                        <span class="prompt-box-label">Příklad: Porovnání legislativy</span>
+                        <button onclick="copyPrompt(this)">Zkopírovat</button>
+                    </div>
+                    <div class="prompt-box-content">Porovnej legislativní požadavky na registraci doplňků stravy v těchto zemích: [ZEMĚ 1], [ZEMĚ 2], [ZEMĚ 3].
+
+Pro každou zemi uveď:
+1. Zodpovědný regulační úřad
+2. Typ notifikace / registrace (pre-market vs post-market)
+3. Klíčové omezení (ingredience, claimy, labeling)
+4. Typická doba schválení
+5. Povinné jazykové mutace na obalu
+
+Formát: přehledná tabulka. Na závěr uveď, který trh je nejsnadnější vstup.</div>
+                </div>
+            </div>
+        </details>
+
+        <!-- Q6: Profesionální obrázky -->
+        <details class="accordion">
+            <summary>"Generování obrázků na profesionální úrovni — mood boards, prezentace"</summary>
+            <div class="accordion-body">
+                <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;"><em>Produktové vizuály, mood boards, koncepty, prezentační grafika</em></p>
+
+                <div class="card-grid card-grid-2" style="margin-bottom:16px;">
+                    <div class="card" style="border-left:3px solid var(--purple);">
+                        <h3 style="font-size:0.85rem; color:var(--purple);">Pro design tým — fotorealistické obrázky</h3>
+                        <p><strong>Nano Banana</strong> (Google) — top pro realistické obličeje, póry, vrásky, přirozené světlo. Volba č. 1 pro fotky, z nichž se dělá video.</p>
+                        <p style="margin-top:6px;"><strong>Seedream</strong> — "shot-on-iPhone" look: nedokonalosti, šum, motion blur. Nejrealističtější výsledky.</p>
+                        <p style="margin-top:6px;"><strong>Midjourney</strong> — nejvyšší kvalita, konzistentní styl. Ideální pro mood boards a koncepty.</p>
+                        <p style="margin-top:6px;"><strong>FLUX</strong> — open-source, skvělá na text v obrázcích (vizitky, plakáty, infografiky).</p>
+                    </div>
+                    <div class="card" style="border-left:3px solid var(--green);">
+                        <h3 style="font-size:0.85rem; color:var(--green);">Pro všechny ostatní</h3>
+                        <p><strong>ChatGPT (DALL-E 3)</strong> — nejjednodušší, přímo v chatu. Stačí popsat, co chcete.</p>
+                        <p style="margin-top:6px;"><strong>Grok Imagine</strong> — generování zdarma, vysoká kvalita.</p>
+                        <p style="margin-top:6px;"><strong>Canva AI</strong> — generování přímo v designovém nástroji, snadná úprava.</p>
+                    </div>
+                </div>
+
+                <div class="card" style="border-left:3px solid var(--accent); margin-bottom:16px;">
+                    <h3>Struktura promptu pro profesionální fotky</h3>
+                    <p style="font-size:0.88rem; margin-bottom:12px;">Každý dobrý image prompt má 6 prvků:</p>
+                    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:8px; font-size:0.85rem;">
+                        <div style="background:var(--bg-surface); padding:10px; border-radius:8px;"><strong>Camera</strong><br><span style="color:var(--text-dim);">candid iPhone, editorial, documentary</span></div>
+                        <div style="background:var(--bg-surface); padding:10px; border-radius:8px;"><strong>Subject</strong><br><span style="color:var(--text-dim);">věk, oblečení, výraz, detaily</span></div>
+                        <div style="background:var(--bg-surface); padding:10px; border-radius:8px;"><strong>Action</strong><br><span style="color:var(--text-dim);">co postava dělá</span></div>
+                        <div style="background:var(--bg-surface); padding:10px; border-radius:8px;"><strong>Setting</strong><br><span style="color:var(--text-dim);">prostředí, pozadí, čas</span></div>
+                        <div style="background:var(--bg-surface); padding:10px; border-radius:8px;"><strong>Lighting</strong><br><span style="color:var(--text-dim);">soft window light, harsh sun</span></div>
+                        <div style="background:var(--bg-surface); padding:10px; border-radius:8px;"><strong>Imperfections</strong><br><span style="color:var(--text-dim);">motion blur, noise, lens flare</span></div>
+                    </div>
+                    <p style="margin-top:12px; font-size:0.85rem; color:var(--text-muted);"><strong>Pro tip:</strong> Přidejte nedokonalosti — póry, vrásky, šum. AI dává příliš dokonalé výsledky. Vaše práce je přidat "realističnost".</p>
+                </div>
+
+                <div class="prompt-box" style="margin-bottom:16px;">
+                    <div class="prompt-box-header">
+                        <span class="prompt-box-label">Příklad: Produktová fotka (suplementy)</span>
+                        <button onclick="copyPrompt(this)">Zkopírovat</button>
+                    </div>
+                    <div class="prompt-box-content">Editorial photography, close-up shot. Athletic woman in her early 30s, natural skin with visible pores and light freckles, warm hazel eyes. She holds an open round white supplement jar with one hand. With her other hand, she reaches for a capsule. Sharp focus on her face, soft focus on the product. Setting: modern minimalist kitchen, morning light from large window. Warm ambient light, clean feeling. Slight depth of field falloff, natural lens vignetting. Aspect ratio: 4:5</div>
+                </div>
+
+                <div class="card" style="border-left:3px solid var(--purple); margin-bottom:16px;">
+                    <h3 style="font-size:0.85rem; color:var(--purple);">Od obrázku k videu — workflow</h3>
+                    <p>Nejlepší výsledky získáte, když AI dáte hotovou fotku a řeknete "rozpohybuj to" (image-to-video). Výsledek je <strong>výrazně lepší</strong> než text-to-video.</p>
+                    <ol style="padding-left:18px; font-size:0.88rem; margin-top:8px;">
+                        <li>Vygenerujte fotku (Nano Banana, Seedream, Midjourney)</li>
+                        <li>Vyberte nejlepší z 20–50 variant</li>
+                        <li>Nahrajte do video nástroje (Kling, VEO) → "Image to Video"</li>
+                        <li>Video prompt popisuje jen POHYB, ne vzhled (ten AI vidí na fotce)</li>
+                    </ol>
+                </div>
+
+                <div class="tip-box">
+                    <span>💡</span>
+                    <div><strong>Prompt agenti:</strong> Pro konzistentní výsledky existují hotové "prompt agenti" — systémové instrukce, které vložíte do Claude/ChatGPT Projektu a agent za vás vytvoří optimalizovaný prompt. Viz tab <a href="#" onclick="switchTab('nastroje'); return false;" style="color:var(--accent);font-weight:600;">Nástroje</a>.</div>
+                </div>
+            </div>
+        </details>
+
+        <!-- Q7: Nemam cas -->
+        <details class="accordion">
+            <summary>"Nemám čas se to učit — kde začít, aby to mělo smysl?"</summary>
+            <div class="accordion-body">
+                <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;"><em>Pro ty, kdo mají plný diář a potřebují výsledky, ne školení</em></p>
+
+                <div class="card" style="border-left:3px solid var(--accent); margin-bottom:16px;">
+                    <h3>Investice 10 minut denně → úspora hodin týdně</h3>
+                    <p>Nemusíte se "učit AI". Stačí <strong>začít ji používat na jednom konkrétním úkolu</strong>, který děláte opakovaně. Za týden uvidíte výsledek.</p>
+
+                    <div style="margin-top:16px; display:grid; gap:12px;">
+                        <div style="display:flex; gap:12px; align-items:flex-start;">
+                            <span style="background:var(--accent-soft); color:var(--accent); font-weight:700; min-width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.85rem;">1</span>
+                            <div>
+                                <strong>Tento týden:</strong> Vyberte 1 opakovaný úkol (e-mail klientovi, cenový průzkum, report).
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:12px; align-items:flex-start;">
+                            <span style="background:var(--accent-soft); color:var(--accent); font-weight:700; min-width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.85rem;">2</span>
+                            <div>
+                                <strong>Příští týden:</strong> Zkuste ho udělat s AI. I když to poprvé trvá stejně — to je normální.
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:12px; align-items:flex-start;">
+                            <span style="background:var(--accent-soft); color:var(--accent); font-weight:700; min-width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.85rem;">3</span>
+                            <div>
+                                <strong>Za měsíc:</strong> Uložte si osvědčený postup jako Project / Custom GPT (→ OHIO). Teď je to 2 minuty místo 30.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="border:2px solid rgba(37,99,235,0.2); background:var(--accent-soft); margin-bottom:16px;">
+                    <h3 style="color:var(--accent);">Power Hour — 1 hodina, která změní váš workflow</h3>
+                    <p>Zablokujte si v kalendáři <strong>1 hodinu týdně</strong> jen na práci s AI. Žádné maily, žádné hovory — jen vy a AI nástroj.</p>
+
+                    <div style="margin-top:16px; display:grid; gap:10px;">
+                        <div style="display:flex; gap:10px; align-items:flex-start;">
+                            <span style="font-size:1.1rem;">⏱️</span>
+                            <div>
+                                <strong>0–15 min:</strong> Vezměte konkrétní úkol z vašeho to-do listu (report, analýza, e-mail).
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:10px; align-items:flex-start;">
+                            <span style="font-size:1.1rem;">⚡</span>
+                            <div>
+                                <strong>15–45 min:</strong> Řešte ho s AI. Iterujte (zpřesňujte). Nebojte se ptát: "Vylepši to", "Co mi chybí?", "Zkrať to na polovinu".
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:10px; align-items:flex-start;">
+                            <span style="font-size:1.1rem;">💾</span>
+                            <div>
+                                <strong>45–60 min:</strong> Zapište si, co fungovalo. Uložte osvědčený prompt. Příště začnete tam, kde jste skončili.
+                            </div>
+                        </div>
+                    </div>
+
+                    <p style="margin-top:16px; font-size:0.88rem; color:var(--text-muted);">Po 4 týdnech Power Hours budete mít <strong>4 ověřené AI workflow</strong> a jistotu, že vám to šetří čas. A přitom jste investovali jen 4 hodiny.</p>
+                </div>
+
+                <div class="tip-box">
+                    <span>💡</span>
+                    <div><strong>Pro obchodníky a manažery:</strong> Nejrychlejší návratnost má AI na třech věcech: <strong>cenové průzkumy</strong> (hodiny → minuty), <strong>příprava na jednání</strong> (shrnutí klienta, trhu, historie) a <strong>e-maily</strong> (profesionální odpovědi v cizích jazycích). Začněte tam.</div>
+                </div>
+            </div>
+        </details>
+
+        <!-- Q8: Co AI muze a nemuze -->
+        <details class="accordion">
+            <summary>"Co AI umí a co ne? Kde jsou hranice?"</summary>
+            <div class="accordion-body">
+                <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;"><em>Realistická očekávání — kde AI exceluje a kde dělá chyby</em></p>
+
+                <div class="card-grid card-grid-2" style="margin-bottom:16px;">
+                    <div class="card" style="border-left:3px solid var(--green);">
+                        <h3 style="font-size:0.85rem; color:var(--green);">Kde AI exceluje</h3>
+                        <ul style="padding-left:16px; font-size:0.88rem;">
+                            <li>Generování a úprava textu</li>
+                            <li>Překlady a lokalizace</li>
+                            <li>Sumarizace dlouhých dokumentů</li>
+                            <li>Brainstorming a nápady</li>
+                            <li>Analýza dat a tabulek</li>
+                            <li>Vzorce, kód, automatizace</li>
+                            <li>Research a rešerše</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="border-left:3px solid #ef4444;">
+                        <h3 style="font-size:0.85rem; color:#ef4444;">Kde AI selhává</h3>
+                        <ul style="padding-left:16px; font-size:0.88rem;">
+                            <li>Přesná čísla a aktuální fakta — <strong>vždy ověřte</strong></li>
+                            <li>Právní a regulační detaily — jen jako vodítko</li>
+                            <li>Firemní kontext — pokud ho nedáte do Projektu</li>
+                            <li>Kreativní originální nápady — spíš kombinuje existující</li>
+                            <li>Komplexní rozhodování — nedá konečnou odpověď, dá podklady</li>
+                            <li>"Nevím" — AI raději vymyslí než přizná, že neví</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card" style="background:var(--bg-surface); text-align:center; padding:20px;">
+                    <p style="font-size:1rem; font-weight:600; color:var(--text);">Zlaté pravidlo: AI je junior kolega s fenomenální pamětí,<br>ale bez zkušenosti. Delegujte, ale kontrolujte.</p>
+                </div>
+            </div>
+        </details>
+
+        <!-- Q9: Jak spravne promptovat -->
+        <details class="accordion">
+            <summary>"Jak správně zadávat dotazy — aby výstupy byly přesné?"</summary>
+            <div class="accordion-body">
+                <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;"><em>Promptování, briefování AI, kvalita výstupů</em></p>
+
+                <div class="card" style="border-left:3px solid var(--accent); margin-bottom:16px;">
+                    <h3>5 pravidel pro kvalitní výstup</h3>
+                    <ol style="padding-left:18px; font-size:0.9rem;">
+                        <li style="margin-bottom:8px;"><strong>Kontext (souvislosti)</strong> — řekněte AI kdo jste, pro koho to děláte, v jakém oboru. Čím víc kontextu, tím lepší výstup.</li>
+                        <li style="margin-bottom:8px;"><strong>Role</strong> — "Jsi expert na [X]" funguje lépe než obecný dotaz.</li>
+                        <li style="margin-bottom:8px;"><strong>Formát</strong> — specifikujte, co chcete: tabulku, bullet points, e-mail, report. AI neví, jestli chcete odstavec nebo tabulku.</li>
+                        <li style="margin-bottom:8px;"><strong>Iterujte (zpřesňujte)</strong> — první výstup je základ. Ptejte se: "Zkrať to", "Přidej čísla", "Změň tón na formálnější". Kvalita je v iteraci.</li>
+                        <li style="margin-bottom:8px;"><strong>Příklady</strong> — ukažte AI příklad toho, co chcete. "Napiš to v tomto stylu: [příklad]" je silnější než popis stylu.</li>
+                    </ol>
+                </div>
+
+                <p style="font-size:0.88rem; color:var(--text-muted); margin-top:12px;">Detailní pravidla a příklady → viz tab <a href="#" onclick="switchTab('cheatsheet'); return false;" style="color:var(--accent); font-weight:600;">Cheatsheet</a> a <a href="#" onclick="switchTab('starterkit'); return false;" style="color:var(--accent); font-weight:600;">Starter Kit</a>.</p>
+            </div>
+        </details>
+
+        <!-- Q10: Marketing strategie -->
+        <details class="accordion">
+            <summary>"Pomoc s marketingovou strategií, kampaněmi a aktuálními trendy"</summary>
+            <div class="accordion-body">
+                <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;"><em>Strategie, obsahový plán, trendy, aktivace</em></p>
+
+                <div class="card" style="border-left:3px solid var(--accent); margin-bottom:16px;">
+                    <h3>AI jako váš strategický sparring partner</h3>
+                    <p>Klíč je dát AI dostatek kontextu o vašem brandu. Vytvořte Claude Project s:</p>
+                    <ul style="padding-left:18px; font-size:0.9rem; margin-top:8px;">
+                        <li>Brand guidelines, tone of voice, cílové skupiny</li>
+                        <li>Produktové portfolio (názvy, popisky, ceny)</li>
+                        <li>Předchozí kampaně — co fungovalo, co ne</li>
+                        <li>Kalendář akcí a sezónní plán</li>
+                    </ul>
+                    <p style="margin-top:12px;">Pak stačí psát: "Navrhni 3 aktivace pro produkt X na léto 2026, cílová skupina 25-35, budget 200k CZK."</p>
+                </div>
+
+                <div class="prompt-box">
+                    <div class="prompt-box-header">
+                        <span class="prompt-box-label">Příklad: Obsahový plán</span>
+                        <button onclick="copyPrompt(this)">Zkopírovat</button>
+                    </div>
+                    <div class="prompt-box-content">Jsi marketingový stratég pro suplementový / FMCG brand v ČR.
+
+Navrhni obsahový plán na sociální sítě pro příští měsíc:
+- Brand: [NÁZEV]
+- Produkty ve fokuse: [PRODUKTY]
+- Cíl: [awareness / konverze / engagement]
+- Kanály: [Instagram, Facebook, LinkedIn...]
+
+Pro každý post navrhni:
+1. Typ obsahu (edukace, produkt, UGC, behind-the-scenes)
+2. Krátký popis / headline
+3. Den v týdnu a čas publikace
+4. Formát (stories, reel, carousel, static post)
+
+Na konci shrň mix: kolik % edukace vs. produkt vs. engagement.</div>
+                </div>
+            </div>
+        </details>
+
     </div>
 </div>
 
@@ -1853,434 +2277,6 @@ Někdy mu můžu poslat fotografie, screenshoty nebo mockupy, aby věděl, co p�
     </div>
 </div>
 
-<!-- ==================== TAB 8: Q&A ==================== -->
-<div id="tab-qa" class="tab-content">
-    <div class="wrap">
-        <div class="section-header" style="padding-top: 40px;">
-            <h2>Odpovědi na vaše dotazy</h2>
-            <p>Z dotazníku jsme vybrali nejčastější potřeby. Každý případ má konkrétní řešení — od jednoduchého po pokročilé.</p>
-        </div>
-
-        <div class="tip-box" style="margin-bottom: 24px;">
-            <span>💡</span>
-            <div>Tato sekce se bude průběžně rozšiřovat. Máte další dotaz? <a href="https://app.sli.do/event/pWuJ3ZpNWB9949recnhMzz" target="_blank" style="color:var(--accent); font-weight:600;">Napište ho na Slido →</a></div>
-        </div>
-
-        <!-- Q1: Monitoring cen -->
-        <details class="accordion" open>
-            <summary>"Chci pravidelně sledovat ceny konkurence a porovnávat produkty"</summary>
-            <div class="accordion-body">
-                <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;"><em>Konkurenční monitoring, cenové průzkumy, sortimentní srovnání</em></p>
-
-                <div class="card-grid card-grid-3" style="margin-bottom:16px;">
-                    <div class="card" style="border-left:3px solid var(--green);">
-                        <h3 style="font-size:0.85rem; color:var(--green);">Úroveň 1 — Jednorázově</h3>
-                        <p>Pošlete AI odkaz na e-shop konkurence + váš ceník. Požádejte o srovnání cen, složení, balení.</p>
-                        <p style="font-size:0.82rem; color:var(--text-dim); margin-top:8px;"><strong>Nástroj:</strong> ChatGPT (browsing) nebo Gemini (Deep Research)</p>
-                    </div>
-                    <div class="card" style="border-left:3px solid var(--accent);">
-                        <h3 style="font-size:0.85rem; color:var(--accent);">Úroveň 2 — Opakovaně</h3>
-                        <p>Vytvořte si Claude Project "Konkurenční monitoring" → nahrajte ceníky, linky, parametry. Pravidelně vkládejte nová data a AI srovná trendy.</p>
-                        <p style="font-size:0.82rem; color:var(--text-dim); margin-top:8px;"><strong>Nástroj:</strong> Claude Projects / ChatGPT Custom GPT</p>
-                    </div>
-                    <div class="card" style="border-left:3px solid var(--purple);">
-                        <h3 style="font-size:0.85rem; color:var(--purple);">Úroveň 3 — Automaticky</h3>
-                        <p>Automatický scraping cen z e-shopů pomocí Apify → data se posílají do Google Sheets → AI vyhodnocuje změny a posílá alert.</p>
-                        <p style="font-size:0.82rem; color:var(--text-dim); margin-top:8px;"><strong>Nástroje:</strong> Apify + Make/n8n + Claude</p>
-                    </div>
-                </div>
-
-                <div class="prompt-box">
-                    <div class="prompt-box-header">
-                        <span class="prompt-box-label">Příklad promptu pro cenový průzkum</span>
-                        <button onclick="copyPrompt(this)">Zkopírovat</button>
-                    </div>
-                    <div class="prompt-box-content">Jsi analytik trhu pro suplementový brand v ČR. Porovnej tyto 3 konkurenční produkty s naším produktem [NÁZEV]:
-
-Konkurent 1: [URL nebo název + cena]
-Konkurent 2: [URL nebo název + cena]
-Náš produkt: [cena, složení, balení]
-
-Vytvoř srovnávací tabulku: cena za denní dávku, klíčové složky, balení, USP. Na závěr doporuč 3 akční body pro naši cenovou strategii.</div>
-                </div>
-            </div>
-        </details>
-
-        <!-- Q2: Analýza trhu -->
-        <details class="accordion">
-            <summary>"Jak udělat kvalitní analýzu trhu / konkurence / trendů?"</summary>
-            <div class="accordion-body">
-                <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;"><em>Market research, trendová analýza, podklady pro strategii</em></p>
-
-                <div class="card" style="border-left:3px solid var(--accent); margin-bottom:16px;">
-                    <h3>Doporučený workflow (3 kroky)</h3>
-                    <ol style="padding-left:18px; font-size:0.9rem;">
-                        <li style="margin-bottom:8px;"><strong>Gemini Deep Research</strong> — zadejte téma, nechte AI prohledat web a zpracovat report. Získáte přehled trhu s reálnými zdroji.</li>
-                        <li style="margin-bottom:8px;"><strong>Claude Project</strong> — nahrajte report z Gemini + vaše interní data (prodeje, marže). Požádejte o analýzu a doporučení specificky pro Vitar.</li>
-                        <li style="margin-bottom:8px;"><strong>Iterujte (zpřesňujte)</strong> — ptejte se dál: "Co mi chybí?", "Jaké jsou rizika?", "Porovnej s EU trhy". Kvalita roste s každou iterací.</li>
-                    </ol>
-                </div>
-
-                <div class="prompt-box">
-                    <div class="prompt-box-header">
-                        <span class="prompt-box-label">Příklad promptu pro trendovou analýzu</span>
-                        <button onclick="copyPrompt(this)">Zkopírovat</button>
-                    </div>
-                    <div class="prompt-box-content">Proveď analýzu trhu [KATEGORIE, např. "sportovní suplementy"] v ČR a SR za rok 2025-2026.
-
-Zaměř se na:
-1. Top 5 trendů v kategorii (s příklady brandů)
-2. Nové ingredience nebo formáty, které rostou
-3. Cenové trendy — kam se posouvá průměrná cena
-4. Co dělají zahraniční brandy, co se u nás zatím neděje
-
-Formát: strukturovaný report s bullet points, ne souvislý text. Na závěr 3 příležitosti konkrétně pro výrobce suplementů.</div>
-                </div>
-            </div>
-        </details>
-
-        <!-- Q3: Automatizace rutiny -->
-        <details class="accordion">
-            <summary>"Chci automatizovat rutinní činnosti — tabulky, maily, reporty"</summary>
-            <div class="accordion-body">
-                <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;"><em>Vyplňování tabulek, odbavování akcí, opakující se operativa</em></p>
-
-                <div class="card-grid card-grid-2" style="margin-bottom:16px;">
-                    <div class="card" style="border-left:3px solid var(--green);">
-                        <h3 style="font-size:0.85rem; color:var(--green);">OHIO — jednou nastav, pak jen používej</h3>
-                        <p>Vytvořte si Claude Project nebo Custom GPT pro opakovaný úkol. Nahrajte šablonu, pravidla, příklady. Příště jen vložíte data → hotovo.</p>
-                        <p style="font-size:0.82rem; margin-top:8px;"><strong>Příklad:</strong> "Event report" — vložíte fotky a poznámky z akce, AI vygeneruje report ve firemní šabloně.</p>
-                    </div>
-                    <div class="card" style="border-left:3px solid var(--purple);">
-                        <h3 style="font-size:0.85rem; color:var(--purple);">Make/n8n — plná automatizace</h3>
-                        <p>Pro procesy, které chcete úplně bez zásahu: data z e-shopu → zpracování → report do e-mailu každé pondělí.</p>
-                        <p style="font-size:0.82rem; margin-top:8px;"><strong>Příklad:</strong> Nová objednávka → Make vytáhne data → AI shrne → pošle notifikaci do Teams.</p>
-                    </div>
-                </div>
-
-                <div class="tip-box">
-                    <span>💡</span>
-                    <div><strong>Kde začít?</strong> Zapište si tento týden 3 činnosti, které děláte opakovaně a zaberou vám víc než 15 minut. To jsou vaši kandidáti na automatizaci. Viz tab <a href="#" onclick="switchTab('projekty'); return false;" style="color:var(--accent);font-weight:600;">Projekty & OHIO</a>.</div>
-                </div>
-            </div>
-        </details>
-
-        <!-- Q4: Excel -->
-        <details class="accordion">
-            <summary>"Potřebuji pomoc s Excelem — složité vzorce, kontingenční tabulky"</summary>
-            <div class="accordion-body">
-                <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;"><em>Funkce, vzorce, pivot tabulky, analýza dat v tabulkách</em></p>
-
-                <div class="card" style="border-left:3px solid var(--green); margin-bottom:16px;">
-                    <h3>AI je váš nejlepší Excel tutor</h3>
-                    <p>ChatGPT i Claude výborně rozumí Excelu. Popište slovně, co potřebujete, a AI vám napíše hotový vzorec s vysvětlením.</p>
-                </div>
-
-                <div class="card-grid card-grid-2" style="margin-bottom:16px;">
-                    <div class="card">
-                        <h3 style="font-size:0.85rem;">Vzorce a funkce</h3>
-                        <p style="font-size:0.88rem;">"Mám tabulku prodejů v A1:A100 a kategorie v B1:B100. Potřebuji SUMIFS, který sečte prodeje jen pro kategorii 'Sport'."</p>
-                    </div>
-                    <div class="card">
-                        <h3 style="font-size:0.85rem;">Kontingenční tabulky</h3>
-                        <p style="font-size:0.88rem;">"Vysvětli mi krok za krokem, jak vytvořit kontingenční tabulku z těchto dat, kde řádky = zákazník, sloupce = měsíc, hodnoty = tržby."</p>
-                    </div>
-                </div>
-
-                <div class="prompt-box">
-                    <div class="prompt-box-header">
-                        <span class="prompt-box-label">Univerzální Excel prompt</span>
-                        <button onclick="copyPrompt(this)">Zkopírovat</button>
-                    </div>
-                    <div class="prompt-box-content">Jsi Excel expert. Pracuji v Microsoft Excel (česká verze).
-
-Moje data vypadají takto:
-[Popište sloupce nebo vložte screenshot]
-
-Potřebuji:
-[Popište co chcete — vzorec, graf, pivot tabulku, analýzu]
-
-Požadavky:
-- Použij české názvy funkcí (SUMA místo SUM, KDYŽ místo IF atd.)
-- Vysvětli vzorec krok za krokem
-- Pokud existuje jednodušší způsob, navrhni ho</div>
-                </div>
-
-                <div class="tip-box" style="margin-top:12px;">
-                    <span>💡</span>
-                    <div><strong>Pro tip:</strong> V ChatGPT můžete rovnou nahrát .xlsx soubor. AI ho přečte, analyzuje a navrhne řešení přímo nad vašimi daty.</div>
-                </div>
-            </div>
-        </details>
-
-        <!-- Q5: Export / legislativa -->
-        <details class="accordion">
-            <summary>"Potřebuji rychle vyhodnotit exportní příležitosti a porovnat legislativu"</summary>
-            <div class="accordion-body">
-                <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;"><em>Registrace produktů, legislativní požadavky, podklady pro jednání, překlady</em></p>
-
-                <div class="card" style="border-left:3px solid var(--accent); margin-bottom:16px;">
-                    <h3>Claude Project pro každý trh</h3>
-                    <p>Vytvořte si projekt pro každý klíčový trh (např. "Export Polsko", "Export Německo"). Nahrajte:</p>
-                    <ul style="padding-left:18px; font-size:0.9rem; margin-top:8px;">
-                        <li>Legislativní požadavky daného trhu</li>
-                        <li>Vaše registrační dokumenty a šablony</li>
-                        <li>Předchozí komunikaci s klienty (vzory)</li>
-                    </ul>
-                    <p style="margin-top:12px;">Pak můžete rovnou psát: "Připrav podklady pro jednání s [klient] o produktu [X] pro trh [Y]" — a AI má veškerý kontext.</p>
-                </div>
-
-                <div class="prompt-box">
-                    <div class="prompt-box-header">
-                        <span class="prompt-box-label">Příklad: Porovnání legislativy</span>
-                        <button onclick="copyPrompt(this)">Zkopírovat</button>
-                    </div>
-                    <div class="prompt-box-content">Porovnej legislativní požadavky na registraci doplňků stravy v těchto zemích: [ZEMĚ 1], [ZEMĚ 2], [ZEMĚ 3].
-
-Pro každou zemi uveď:
-1. Zodpovědný regulační úřad
-2. Typ notifikace / registrace (pre-market vs post-market)
-3. Klíčové omezení (ingredience, claimy, labeling)
-4. Typická doba schválení
-5. Povinné jazykové mutace na obalu
-
-Formát: přehledná tabulka. Na závěr uveď, který trh je nejsnadnější vstup.</div>
-                </div>
-            </div>
-        </details>
-
-        <!-- Q6: Profesionální obrázky -->
-        <details class="accordion">
-            <summary>"Generování obrázků na profesionální úrovni — mood boards, prezentace"</summary>
-            <div class="accordion-body">
-                <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;"><em>Produktové vizuály, mood boards, koncepty, prezentační grafika</em></p>
-
-                <div class="card-grid card-grid-2" style="margin-bottom:16px;">
-                    <div class="card" style="border-left:3px solid var(--purple);">
-                        <h3 style="font-size:0.85rem; color:var(--purple);">Pro design tým — fotorealistické obrázky</h3>
-                        <p><strong>Nano Banana</strong> (Google) — top pro realistické obličeje, póry, vrásky, přirozené světlo. Volba č. 1 pro fotky, z nichž se dělá video.</p>
-                        <p style="margin-top:6px;"><strong>Seedream</strong> — "shot-on-iPhone" look: nedokonalosti, šum, motion blur. Nejrealističtější výsledky.</p>
-                        <p style="margin-top:6px;"><strong>Midjourney</strong> — nejvyšší kvalita, konzistentní styl. Ideální pro mood boards a koncepty.</p>
-                        <p style="margin-top:6px;"><strong>FLUX</strong> — open-source, skvělá na text v obrázcích (vizitky, plakáty, infografiky).</p>
-                    </div>
-                    <div class="card" style="border-left:3px solid var(--green);">
-                        <h3 style="font-size:0.85rem; color:var(--green);">Pro všechny ostatní</h3>
-                        <p><strong>ChatGPT (DALL-E 3)</strong> — nejjednodušší, přímo v chatu. Stačí popsat, co chcete.</p>
-                        <p style="margin-top:6px;"><strong>Grok Imagine</strong> — generování zdarma, vysoká kvalita.</p>
-                        <p style="margin-top:6px;"><strong>Canva AI</strong> — generování přímo v designovém nástroji, snadná úprava.</p>
-                    </div>
-                </div>
-
-                <div class="card" style="border-left:3px solid var(--accent); margin-bottom:16px;">
-                    <h3>Struktura promptu pro profesionální fotky</h3>
-                    <p style="font-size:0.88rem; margin-bottom:12px;">Každý dobrý image prompt má 6 prvků:</p>
-                    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:8px; font-size:0.85rem;">
-                        <div style="background:var(--bg-surface); padding:10px; border-radius:8px;"><strong>Camera</strong><br><span style="color:var(--text-dim);">candid iPhone, editorial, documentary</span></div>
-                        <div style="background:var(--bg-surface); padding:10px; border-radius:8px;"><strong>Subject</strong><br><span style="color:var(--text-dim);">věk, oblečení, výraz, detaily</span></div>
-                        <div style="background:var(--bg-surface); padding:10px; border-radius:8px;"><strong>Action</strong><br><span style="color:var(--text-dim);">co postava dělá</span></div>
-                        <div style="background:var(--bg-surface); padding:10px; border-radius:8px;"><strong>Setting</strong><br><span style="color:var(--text-dim);">prostředí, pozadí, čas</span></div>
-                        <div style="background:var(--bg-surface); padding:10px; border-radius:8px;"><strong>Lighting</strong><br><span style="color:var(--text-dim);">soft window light, harsh sun</span></div>
-                        <div style="background:var(--bg-surface); padding:10px; border-radius:8px;"><strong>Imperfections</strong><br><span style="color:var(--text-dim);">motion blur, noise, lens flare</span></div>
-                    </div>
-                    <p style="margin-top:12px; font-size:0.85rem; color:var(--text-muted);"><strong>Pro tip:</strong> Přidejte nedokonalosti — póry, vrásky, šum. AI dává příliš dokonalé výsledky. Vaše práce je přidat "realističnost".</p>
-                </div>
-
-                <div class="prompt-box" style="margin-bottom:16px;">
-                    <div class="prompt-box-header">
-                        <span class="prompt-box-label">Příklad: Produktová fotka (suplementy)</span>
-                        <button onclick="copyPrompt(this)">Zkopírovat</button>
-                    </div>
-                    <div class="prompt-box-content">Editorial photography, close-up shot. Athletic woman in her early 30s, natural skin with visible pores and light freckles, warm hazel eyes. She holds an open round white supplement jar with one hand. With her other hand, she reaches for a capsule. Sharp focus on her face, soft focus on the product. Setting: modern minimalist kitchen, morning light from large window. Warm ambient light, clean feeling. Slight depth of field falloff, natural lens vignetting. Aspect ratio: 4:5</div>
-                </div>
-
-                <div class="card" style="border-left:3px solid var(--purple); margin-bottom:16px;">
-                    <h3 style="font-size:0.85rem; color:var(--purple);">Od obrázku k videu — workflow</h3>
-                    <p>Nejlepší výsledky získáte, když AI dáte hotovou fotku a řeknete "rozpohybuj to" (image-to-video). Výsledek je <strong>výrazně lepší</strong> než text-to-video.</p>
-                    <ol style="padding-left:18px; font-size:0.88rem; margin-top:8px;">
-                        <li>Vygenerujte fotku (Nano Banana, Seedream, Midjourney)</li>
-                        <li>Vyberte nejlepší z 20–50 variant</li>
-                        <li>Nahrajte do video nástroje (Kling, VEO) → "Image to Video"</li>
-                        <li>Video prompt popisuje jen POHYB, ne vzhled (ten AI vidí na fotce)</li>
-                    </ol>
-                </div>
-
-                <div class="tip-box">
-                    <span>💡</span>
-                    <div><strong>Prompt agenti:</strong> Pro konzistentní výsledky existují hotové "prompt agenti" — systémové instrukce, které vložíte do Claude/ChatGPT Projektu a agent za vás vytvoří optimalizovaný prompt. Viz tab <a href="#" onclick="switchTab('nastroje'); return false;" style="color:var(--accent);font-weight:600;">Nástroje</a>.</div>
-                </div>
-            </div>
-        </details>
-
-        <!-- Q7: Nemam cas -->
-        <details class="accordion">
-            <summary>"Nemám čas se to učit — kde začít, aby to mělo smysl?"</summary>
-            <div class="accordion-body">
-                <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;"><em>Pro ty, kdo mají plný diář a potřebují výsledky, ne školení</em></p>
-
-                <div class="card" style="border-left:3px solid var(--accent); margin-bottom:16px;">
-                    <h3>Investice 10 minut denně → úspora hodin týdně</h3>
-                    <p>Nemusíte se "učit AI". Stačí <strong>začít ji používat na jednom konkrétním úkolu</strong>, který děláte opakovaně. Za týden uvidíte výsledek.</p>
-
-                    <div style="margin-top:16px; display:grid; gap:12px;">
-                        <div style="display:flex; gap:12px; align-items:flex-start;">
-                            <span style="background:var(--accent-soft); color:var(--accent); font-weight:700; min-width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.85rem;">1</span>
-                            <div>
-                                <strong>Tento týden:</strong> Vyberte 1 opakovaný úkol (e-mail klientovi, cenový průzkum, report).
-                            </div>
-                        </div>
-                        <div style="display:flex; gap:12px; align-items:flex-start;">
-                            <span style="background:var(--accent-soft); color:var(--accent); font-weight:700; min-width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.85rem;">2</span>
-                            <div>
-                                <strong>Příští týden:</strong> Zkuste ho udělat s AI. I když to poprvé trvá stejně — to je normální.
-                            </div>
-                        </div>
-                        <div style="display:flex; gap:12px; align-items:flex-start;">
-                            <span style="background:var(--accent-soft); color:var(--accent); font-weight:700; min-width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.85rem;">3</span>
-                            <div>
-                                <strong>Za měsíc:</strong> Uložte si osvědčený postup jako Project / Custom GPT (→ OHIO). Teď je to 2 minuty místo 30.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" style="border:2px solid rgba(37,99,235,0.2); background:var(--accent-soft); margin-bottom:16px;">
-                    <h3 style="color:var(--accent);">Power Hour — 1 hodina, která změní váš workflow</h3>
-                    <p>Zablokujte si v kalendáři <strong>1 hodinu týdně</strong> jen na práci s AI. Žádné maily, žádné hovory — jen vy a AI nástroj.</p>
-
-                    <div style="margin-top:16px; display:grid; gap:10px;">
-                        <div style="display:flex; gap:10px; align-items:flex-start;">
-                            <span style="font-size:1.1rem;">⏱️</span>
-                            <div>
-                                <strong>0–15 min:</strong> Vezměte konkrétní úkol z vašeho to-do listu (report, analýza, e-mail).
-                            </div>
-                        </div>
-                        <div style="display:flex; gap:10px; align-items:flex-start;">
-                            <span style="font-size:1.1rem;">⚡</span>
-                            <div>
-                                <strong>15–45 min:</strong> Řešte ho s AI. Iterujte (zpřesňujte). Nebojte se ptát: "Vylepši to", "Co mi chybí?", "Zkrať to na polovinu".
-                            </div>
-                        </div>
-                        <div style="display:flex; gap:10px; align-items:flex-start;">
-                            <span style="font-size:1.1rem;">💾</span>
-                            <div>
-                                <strong>45–60 min:</strong> Zapište si, co fungovalo. Uložte osvědčený prompt. Příště začnete tam, kde jste skončili.
-                            </div>
-                        </div>
-                    </div>
-
-                    <p style="margin-top:16px; font-size:0.88rem; color:var(--text-muted);">Po 4 týdnech Power Hours budete mít <strong>4 ověřené AI workflow</strong> a jistotu, že vám to šetří čas. A přitom jste investovali jen 4 hodiny.</p>
-                </div>
-
-                <div class="tip-box">
-                    <span>💡</span>
-                    <div><strong>Pro obchodníky a manažery:</strong> Nejrychlejší návratnost má AI na třech věcech: <strong>cenové průzkumy</strong> (hodiny → minuty), <strong>příprava na jednání</strong> (shrnutí klienta, trhu, historie) a <strong>e-maily</strong> (profesionální odpovědi v cizích jazycích). Začněte tam.</div>
-                </div>
-            </div>
-        </details>
-
-        <!-- Q8: Co AI muze a nemuze -->
-        <details class="accordion">
-            <summary>"Co AI umí a co ne? Kde jsou hranice?"</summary>
-            <div class="accordion-body">
-                <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;"><em>Realistická očekávání — kde AI exceluje a kde dělá chyby</em></p>
-
-                <div class="card-grid card-grid-2" style="margin-bottom:16px;">
-                    <div class="card" style="border-left:3px solid var(--green);">
-                        <h3 style="font-size:0.85rem; color:var(--green);">Kde AI exceluje</h3>
-                        <ul style="padding-left:16px; font-size:0.88rem;">
-                            <li>Generování a úprava textu</li>
-                            <li>Překlady a lokalizace</li>
-                            <li>Sumarizace dlouhých dokumentů</li>
-                            <li>Brainstorming a nápady</li>
-                            <li>Analýza dat a tabulek</li>
-                            <li>Vzorce, kód, automatizace</li>
-                            <li>Research a rešerše</li>
-                        </ul>
-                    </div>
-                    <div class="card" style="border-left:3px solid #ef4444;">
-                        <h3 style="font-size:0.85rem; color:#ef4444;">Kde AI selhává</h3>
-                        <ul style="padding-left:16px; font-size:0.88rem;">
-                            <li>Přesná čísla a aktuální fakta — <strong>vždy ověřte</strong></li>
-                            <li>Právní a regulační detaily — jen jako vodítko</li>
-                            <li>Firemní kontext — pokud ho nedáte do Projektu</li>
-                            <li>Kreativní originální nápady — spíš kombinuje existující</li>
-                            <li>Komplexní rozhodování — nedá konečnou odpověď, dá podklady</li>
-                            <li>"Nevím" — AI raději vymyslí než přizná, že neví</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="card" style="background:var(--bg-surface); text-align:center; padding:20px;">
-                    <p style="font-size:1rem; font-weight:600; color:var(--text);">Zlaté pravidlo: AI je junior kolega s fenomenální pamětí,<br>ale bez zkušenosti. Delegujte, ale kontrolujte.</p>
-                </div>
-            </div>
-        </details>
-
-        <!-- Q9: Jak spravne promptovat -->
-        <details class="accordion">
-            <summary>"Jak správně zadávat dotazy — aby výstupy byly přesné?"</summary>
-            <div class="accordion-body">
-                <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;"><em>Promptování, briefování AI, kvalita výstupů</em></p>
-
-                <div class="card" style="border-left:3px solid var(--accent); margin-bottom:16px;">
-                    <h3>5 pravidel pro kvalitní výstup</h3>
-                    <ol style="padding-left:18px; font-size:0.9rem;">
-                        <li style="margin-bottom:8px;"><strong>Kontext (souvislosti)</strong> — řekněte AI kdo jste, pro koho to děláte, v jakém oboru. Čím víc kontextu, tím lepší výstup.</li>
-                        <li style="margin-bottom:8px;"><strong>Role</strong> — "Jsi expert na [X]" funguje lépe než obecný dotaz.</li>
-                        <li style="margin-bottom:8px;"><strong>Formát</strong> — specifikujte, co chcete: tabulku, bullet points, e-mail, report. AI neví, jestli chcete odstavec nebo tabulku.</li>
-                        <li style="margin-bottom:8px;"><strong>Iterujte (zpřesňujte)</strong> — první výstup je základ. Ptejte se: "Zkrať to", "Přidej čísla", "Změň tón na formálnější". Kvalita je v iteraci.</li>
-                        <li style="margin-bottom:8px;"><strong>Příklady</strong> — ukažte AI příklad toho, co chcete. "Napiš to v tomto stylu: [příklad]" je silnější než popis stylu.</li>
-                    </ol>
-                </div>
-
-                <p style="font-size:0.88rem; color:var(--text-muted); margin-top:12px;">Detailní pravidla a příklady → viz tab <a href="#" onclick="switchTab('cheatsheet'); return false;" style="color:var(--accent); font-weight:600;">Cheatsheet</a> a <a href="#" onclick="switchTab('starterkit'); return false;" style="color:var(--accent); font-weight:600;">Starter Kit</a>.</p>
-            </div>
-        </details>
-
-        <!-- Q10: Marketing strategie -->
-        <details class="accordion">
-            <summary>"Pomoc s marketingovou strategií, kampaněmi a aktuálními trendy"</summary>
-            <div class="accordion-body">
-                <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;"><em>Strategie, obsahový plán, trendy, aktivace</em></p>
-
-                <div class="card" style="border-left:3px solid var(--accent); margin-bottom:16px;">
-                    <h3>AI jako váš strategický sparring partner</h3>
-                    <p>Klíč je dát AI dostatek kontextu o vašem brandu. Vytvořte Claude Project s:</p>
-                    <ul style="padding-left:18px; font-size:0.9rem; margin-top:8px;">
-                        <li>Brand guidelines, tone of voice, cílové skupiny</li>
-                        <li>Produktové portfolio (názvy, popisky, ceny)</li>
-                        <li>Předchozí kampaně — co fungovalo, co ne</li>
-                        <li>Kalendář akcí a sezónní plán</li>
-                    </ul>
-                    <p style="margin-top:12px;">Pak stačí psát: "Navrhni 3 aktivace pro produkt X na léto 2026, cílová skupina 25-35, budget 200k CZK."</p>
-                </div>
-
-                <div class="prompt-box">
-                    <div class="prompt-box-header">
-                        <span class="prompt-box-label">Příklad: Obsahový plán</span>
-                        <button onclick="copyPrompt(this)">Zkopírovat</button>
-                    </div>
-                    <div class="prompt-box-content">Jsi marketingový stratég pro suplementový / FMCG brand v ČR.
-
-Navrhni obsahový plán na sociální sítě pro příští měsíc:
-- Brand: [NÁZEV]
-- Produkty ve fokuse: [PRODUKTY]
-- Cíl: [awareness / konverze / engagement]
-- Kanály: [Instagram, Facebook, LinkedIn...]
-
-Pro každý post navrhni:
-1. Typ obsahu (edukace, produkt, UGC, behind-the-scenes)
-2. Krátký popis / headline
-3. Den v týdnu a čas publikace
-4. Formát (stories, reel, carousel, static post)
-
-Na konci shrň mix: kolik % edukace vs. produkt vs. engagement.</div>
-                </div>
-            </div>
-        </details>
-
-    </div>
-</div>
 
 <!-- ==================== TAB 9: UPDATES ==================== -->
 <div id="tab-updates" class="tab-content">
@@ -2327,85 +2323,6 @@ Na konci shrň mix: kolik % edukace vs. produkt vs. engagement.</div>
             <p>Vaše otázky z workshopu a formuláře budou zodpovězeny sem. Sledujte tuto záložku.</p>
         </div>
 
-        <div class="section-header">
-            <h2>Koho sledovat — zdroje a inspirace</h2>
-            <p>Lidi a kanály, kde se dozvíte novinky z AI. Česky i anglicky.</p>
-        </div>
-
-        <div class="card" style="margin-bottom: 16px;">
-            <h3 style="color: var(--green);">CZ / SK zdroje</h3>
-            <div style="margin-top: 12px; display:flex; flex-direction:column; gap:10px;">
-                <div style="display:flex; gap:12px; align-items:flex-start;">
-                    <span style="font-size:1.2rem; flex-shrink:0;">🎯</span>
-                    <div>
-                        <strong>Filip Dřímalka</strong> — <a href="https://www.linkedin.com/in/drimalka/" target="_blank" style="color:var(--accent);">LinkedIn</a><br>
-                        <span style="font-size:0.85rem; color:var(--text-muted);">Český AI evangelist #1. Přednášky, knihy, praktické tipy. Srozumitelně česky.</span>
-                    </div>
-                </div>
-                <div style="display:flex; gap:12px; align-items:flex-start;">
-                    <span style="font-size:1.2rem; flex-shrink:0;">🤖</span>
-                    <div>
-                        <strong>AIbility</strong> — <a href="https://www.aibility.cz/" target="_blank" style="color:var(--accent);">aibility.cz</a><br>
-                        <span style="font-size:0.85rem; color:var(--text-muted);">Česká AI komunita. Webináře, kurzy, newsletter. Ideální pro začátek.</span>
-                    </div>
-                </div>
-                <div style="display:flex; gap:12px; align-items:flex-start;">
-                    <span style="font-size:1.2rem; flex-shrink:0;">🚀</span>
-                    <div>
-                        <strong>AI First</strong> — <a href="https://www.aifirst.cz/" target="_blank" style="color:var(--accent);">aifirst.cz</a><br>
-                        <span style="font-size:0.85rem; color:var(--text-muted);">AI novinky, přehledy nástrojů, praktické návody. Česky.</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <h3 style="color: var(--accent);">Zahraniční zdroje</h3>
-            <div style="margin-top: 12px; display:flex; flex-direction:column; gap:10px;">
-                <div style="display:flex; gap:12px; align-items:flex-start;">
-                    <span style="font-size:1.2rem; flex-shrink:0;">💜</span>
-                    <div>
-                        <strong>Lovable</strong> — <a href="https://lovable.dev" target="_blank" style="color:var(--accent);">lovable.dev</a> · <a href="https://february.lovable.app/" target="_blank" style="color:var(--accent);">28 Days Challenge</a><br>
-                        <span style="font-size:0.85rem; color:var(--text-muted);">AI builder — blog, tutoriály, challenge "postav aplikaci za 28 dní". Skvělý na pochopení no-code AI.</span>
-                    </div>
-                </div>
-                <div style="display:flex; gap:12px; align-items:flex-start;">
-                    <span style="font-size:1.2rem; flex-shrink:0;">📰</span>
-                    <div>
-                        <strong>The Rundown AI</strong> — <a href="https://www.therundown.ai/" target="_blank" style="color:var(--accent);">therundown.ai</a><br>
-                        <span style="font-size:0.85rem; color:var(--text-muted);">Denní newsletter — 5 min přehled AI novinek. Nejčtenější AI newsletter na světě.</span>
-                    </div>
-                </div>
-                <div style="display:flex; gap:12px; align-items:flex-start;">
-                    <span style="font-size:1.2rem; flex-shrink:0;">🔍</span>
-                    <div>
-                        <strong>There's an AI for That</strong> — <a href="https://theresanaiforthat.com" target="_blank" style="color:var(--accent);">theresanaiforthat.com</a><br>
-                        <span style="font-size:0.85rem; color:var(--text-muted);">Katalog 20 000+ AI nástrojů. "Potřebuju AI na X" → najdete tu.</span>
-                    </div>
-                </div>
-                <div style="display:flex; gap:12px; align-items:flex-start;">
-                    <span style="font-size:1.2rem; flex-shrink:0;">🎥</span>
-                    <div>
-                        <strong>Matt Wolfe</strong> — <a href="https://www.youtube.com/@maboroshi" target="_blank" style="color:var(--accent);">YouTube</a><br>
-                        <span style="font-size:0.85rem; color:var(--text-muted);">Týdenní přehled AI novinek na YouTube. Srozumitelně, s ukázkami.</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section-header" style="padding-top: 32px;">
-            <h2>Nevíte si rady?</h2>
-        </div>
-
-        <div class="card" style="text-align:center; padding:24px;">
-            <p style="font-size:0.95rem; margin-bottom:8px;">Napište nám — pomůžeme s výběrem nástroje, nastavením projektu nebo konkrétním use case.</p>
-            <p style="font-size:0.88rem; color:var(--text-muted);">Juraj Giacko · Radim Lorenc · Tomáš Červinka</p>
-        </div>
-
-        <div class="card" style="margin-top: 16px; text-align: center; border: 1px dashed var(--border);">
-            <p style="font-size: 0.92rem; font-weight: 600; color: var(--text-dim);">Teams kanál: AI @ VITAR — coming soon</p>
-            <p style="font-size: 0.82rem; color: var(--text-dim); margin-top: 4px;">Sdílení tipů, otázky, showcase — připravujeme.</p>
-        </div>
     </div>
 </div>
 
@@ -2422,9 +2339,44 @@ Na konci shrň mix: kolik % edukace vs. produkt vs. engagement.</div>
 </a>
 
 <!-- FOOTER -->
-<div style="text-align:center; padding:40px 20px; color:var(--text-dim); font-size:0.82rem; border-top: 1px solid var(--border);">
-    <strong>AI</strong> @ <strong>VITAR</strong> by <strong>JURAJ.DIGITAL</strong> · 2026 · Živý dokument
-</div>
+<footer style="border-top: 1px solid var(--border); padding: 48px 20px 40px; background: var(--bg-surface);">
+    <div style="max-width: 800px; margin: 0 auto;">
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom:32px;">
+            <div>
+                <h3 style="font-size:0.88rem; font-weight:700; margin-bottom:12px; color:var(--green);">CZ / SK zdroje</h3>
+                <div style="display:flex; flex-direction:column; gap:6px; font-size:0.85rem;">
+                    <div><strong>Filip Dřímalka</strong> — <a href="https://www.linkedin.com/in/drimalka/" target="_blank" style="color:var(--accent);">LinkedIn</a></div>
+                    <div><strong>AIbility</strong> — <a href="https://www.aibility.cz/" target="_blank" style="color:var(--accent);">aibility.cz</a></div>
+                    <div><strong>AI First</strong> — <a href="https://www.aifirst.cz/" target="_blank" style="color:var(--accent);">aifirst.cz</a></div>
+                </div>
+            </div>
+            <div>
+                <h3 style="font-size:0.88rem; font-weight:700; margin-bottom:12px; color:var(--accent);">Zahraniční zdroje</h3>
+                <div style="display:flex; flex-direction:column; gap:6px; font-size:0.85rem;">
+                    <div><strong>Lovable</strong> — <a href="https://lovable.dev" target="_blank" style="color:var(--accent);">lovable.dev</a> · <a href="https://february.lovable.app/" target="_blank" style="color:var(--accent);">28 Days Challenge</a></div>
+                    <div><strong>The Rundown AI</strong> — <a href="https://www.therundown.ai/" target="_blank" style="color:var(--accent);">therundown.ai</a></div>
+                    <div><strong>There's an AI for That</strong> — <a href="https://theresanaiforthat.com" target="_blank" style="color:var(--accent);">theresanaiforthat.com</a></div>
+                    <div><strong>Matt Wolfe</strong> — <a href="https://www.youtube.com/@maboroshi" target="_blank" style="color:var(--accent);">YouTube</a></div>
+                </div>
+            </div>
+        </div>
+
+        <div style="border-top:1px solid var(--border); padding-top:24px; margin-bottom:20px; text-align:center;">
+            <p style="font-size:0.92rem; font-weight:600; margin-bottom:6px;">Nevíte si rady?</p>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:4px;">Napište nám — pomůžeme s výběrem nástroje, nastavením projektu nebo konkrétním use case.</p>
+            <p style="font-size:0.82rem; color:var(--text-dim);">Juraj Giacko · Radim Lorenc · Tomáš Červinka</p>
+        </div>
+
+        <div style="text-align:center; padding:12px; border:1px dashed var(--border); border-radius:8px; margin-bottom:24px;">
+            <p style="font-size:0.85rem; font-weight:600; color:var(--text-dim);">Teams kanál: AI @ VITAR — coming soon</p>
+        </div>
+
+        <div style="text-align:center; color:var(--text-dim); font-size:0.78rem;">
+            <strong>AI</strong> @ <strong>VITAR</strong> by <strong>JURAJ.DIGITAL</strong> · 2026 · Živý dokument
+        </div>
+    </div>
+</footer>
 
 <script>
 function switchTab(tab) {
@@ -2470,7 +2422,8 @@ function extractPageData() {
         { id: 'compare', name: 'Chat vs Agent' },
         { id: 'projekty', name: 'Projekty & OHIO' },
         { id: 'pakt', name: 'AI Pakt' },
-        { id: 'usecases', name: 'Use Cases' },
+        { id: 'nastroje', name: 'Nástroje' },
+        { id: 'usecases', name: 'Příklady & dotazy' },
         { id: 'cheatsheet', name: 'Cheatsheet' },
         { id: 'starterkit', name: 'Starter Kit' },
         { id: 'updates', name: 'Updates' }
@@ -2524,6 +2477,20 @@ function extractPageData() {
             }
         });
 
+        el.querySelectorAll('details.accordion').forEach(det => {
+            const summary = det.querySelector('summary');
+            const body = det.querySelector('.accordion-body');
+            if (summary) {
+                const item = {
+                    title: summary.textContent.trim(),
+                    content: body ? body.textContent.trim().substring(0, 2000) : ''
+                };
+                const prompt = det.querySelector('.prompt-box-content');
+                if (prompt) item.prompt = prompt.textContent.trim();
+                tabData.sections.push(item);
+            }
+        });
+
         el.querySelectorAll('.compare-table').forEach(table => {
             const rows = [];
             table.querySelectorAll('tr').forEach(tr => {
@@ -2555,7 +2522,7 @@ function downloadMD() {
     let md = `# ${data.title}\n\n`;
     md += `> Exported: ${new Date().toLocaleDateString('cs-CZ')} | Source: ${data.source}\n\n---\n\n`;
 
-    const tabOrder = ['mindset', 'compare', 'projekty', 'pakt', 'usecases', 'cheatsheet', 'starterkit', 'updates'];
+    const tabOrder = ['mindset', 'compare', 'projekty', 'pakt', 'nastroje', 'usecases', 'cheatsheet', 'starterkit', 'updates'];
 
     tabOrder.forEach(tabId => {
         const tab = data.tabs[tabId];

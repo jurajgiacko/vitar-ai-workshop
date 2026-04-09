@@ -2057,20 +2057,56 @@ Formát: přehledná tabulka. Na závěr uveď, který trh je nejsnadnější vs
 
                 <div class="card-grid card-grid-2" style="margin-bottom:16px;">
                     <div class="card" style="border-left:3px solid var(--purple);">
-                        <h3 style="font-size:0.85rem; color:var(--purple);">Pro design tým</h3>
-                        <p><strong>Midjourney</strong> — nejvyšší kvalita, konzistentní styl. Ideální pro mood boards a koncepty.</p>
-                        <p style="margin-top:6px;"><strong>FLUX</strong> — open-source alternativa, skvělá na specifické styly a text v obrázcích.</p>
+                        <h3 style="font-size:0.85rem; color:var(--purple);">Pro design tým — fotorealistické obrázky</h3>
+                        <p><strong>Nano Banana</strong> (Google) — top pro realistické obličeje, póry, vrásky, přirozené světlo. Volba č. 1 pro fotky, z nichž se dělá video.</p>
+                        <p style="margin-top:6px;"><strong>Seedream</strong> — "shot-on-iPhone" look: nedokonalosti, šum, motion blur. Nejrealističtější výsledky.</p>
+                        <p style="margin-top:6px;"><strong>Midjourney</strong> — nejvyšší kvalita, konzistentní styl. Ideální pro mood boards a koncepty.</p>
+                        <p style="margin-top:6px;"><strong>FLUX</strong> — open-source, skvělá na text v obrázcích (vizitky, plakáty, infografiky).</p>
                     </div>
                     <div class="card" style="border-left:3px solid var(--green);">
                         <h3 style="font-size:0.85rem; color:var(--green);">Pro všechny ostatní</h3>
                         <p><strong>ChatGPT (DALL-E 3)</strong> — nejjednodušší, přímo v chatu. Stačí popsat, co chcete.</p>
+                        <p style="margin-top:6px;"><strong>Grok Imagine</strong> — generování zdarma, vysoká kvalita.</p>
                         <p style="margin-top:6px;"><strong>Canva AI</strong> — generování přímo v designovém nástroji, snadná úprava.</p>
                     </div>
                 </div>
 
+                <div class="card" style="border-left:3px solid var(--accent); margin-bottom:16px;">
+                    <h3>Struktura promptu pro profesionální fotky</h3>
+                    <p style="font-size:0.88rem; margin-bottom:12px;">Každý dobrý image prompt má 6 prvků:</p>
+                    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:8px; font-size:0.85rem;">
+                        <div style="background:var(--bg-surface); padding:10px; border-radius:8px;"><strong>Camera</strong><br><span style="color:var(--text-dim);">candid iPhone, editorial, documentary</span></div>
+                        <div style="background:var(--bg-surface); padding:10px; border-radius:8px;"><strong>Subject</strong><br><span style="color:var(--text-dim);">věk, oblečení, výraz, detaily</span></div>
+                        <div style="background:var(--bg-surface); padding:10px; border-radius:8px;"><strong>Action</strong><br><span style="color:var(--text-dim);">co postava dělá</span></div>
+                        <div style="background:var(--bg-surface); padding:10px; border-radius:8px;"><strong>Setting</strong><br><span style="color:var(--text-dim);">prostředí, pozadí, čas</span></div>
+                        <div style="background:var(--bg-surface); padding:10px; border-radius:8px;"><strong>Lighting</strong><br><span style="color:var(--text-dim);">soft window light, harsh sun</span></div>
+                        <div style="background:var(--bg-surface); padding:10px; border-radius:8px;"><strong>Imperfections</strong><br><span style="color:var(--text-dim);">motion blur, noise, lens flare</span></div>
+                    </div>
+                    <p style="margin-top:12px; font-size:0.85rem; color:var(--text-muted);"><strong>Pro tip:</strong> Přidejte nedokonalosti — póry, vrásky, šum. AI dává příliš dokonalé výsledky. Vaše práce je přidat "realističnost".</p>
+                </div>
+
+                <div class="prompt-box" style="margin-bottom:16px;">
+                    <div class="prompt-box-header">
+                        <span class="prompt-box-label">Příklad: Produktová fotka (suplementy)</span>
+                        <button onclick="copyPrompt(this)">Zkopírovat</button>
+                    </div>
+                    <div class="prompt-box-content">Editorial photography, close-up shot. Athletic woman in her early 30s, natural skin with visible pores and light freckles, warm hazel eyes. She holds an open round white supplement jar with one hand. With her other hand, she reaches for a capsule. Sharp focus on her face, soft focus on the product. Setting: modern minimalist kitchen, morning light from large window. Warm ambient light, clean feeling. Slight depth of field falloff, natural lens vignetting. Aspect ratio: 4:5</div>
+                </div>
+
+                <div class="card" style="border-left:3px solid var(--purple); margin-bottom:16px;">
+                    <h3 style="font-size:0.85rem; color:var(--purple);">Od obrázku k videu — workflow</h3>
+                    <p>Nejlepší výsledky získáte, když AI dáte hotovou fotku a řeknete "rozpohybuj to" (image-to-video). Výsledek je <strong>výrazně lepší</strong> než text-to-video.</p>
+                    <ol style="padding-left:18px; font-size:0.88rem; margin-top:8px;">
+                        <li>Vygenerujte fotku (Nano Banana, Seedream, Midjourney)</li>
+                        <li>Vyberte nejlepší z 20–50 variant</li>
+                        <li>Nahrajte do video nástroje (Kling, VEO) → "Image to Video"</li>
+                        <li>Video prompt popisuje jen POHYB, ne vzhled (ten AI vidí na fotce)</li>
+                    </ol>
+                </div>
+
                 <div class="tip-box">
                     <span>💡</span>
-                    <div><strong>Tip pro lepší výsledky:</strong> Čím detailnější popis, tím lepší obrázek. Specifikujte styl (fotorealistický, ilustrace, flat design), kompozici, barvy a náladu. Referenční obrázek funguje lépe než tisíc slov — použijte "image-to-image".</div>
+                    <div><strong>Prompt agenti:</strong> Pro konzistentní výsledky existují hotové "prompt agenti" — systémové instrukce, které vložíte do Claude/ChatGPT Projektu a agent za vás vytvoří optimalizovaný prompt. Viz tab <a href="#" onclick="switchTab('nastroje'); return false;" style="color:var(--accent);font-weight:600;">Nástroje</a>.</div>
                 </div>
             </div>
         </details>
@@ -2105,6 +2141,34 @@ Formát: přehledná tabulka. Na závěr uveď, který trh je nejsnadnější vs
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="card" style="border:2px solid rgba(37,99,235,0.2); background:var(--accent-soft); margin-bottom:16px;">
+                    <h3 style="color:var(--accent);">Power Hour — 1 hodina, která změní váš workflow</h3>
+                    <p>Zablokujte si v kalendáři <strong>1 hodinu týdně</strong> jen na práci s AI. Žádné maily, žádné hovory — jen vy a AI nástroj.</p>
+
+                    <div style="margin-top:16px; display:grid; gap:10px;">
+                        <div style="display:flex; gap:10px; align-items:flex-start;">
+                            <span style="font-size:1.1rem;">⏱️</span>
+                            <div>
+                                <strong>0–15 min:</strong> Vezměte konkrétní úkol z vašeho to-do listu (report, analýza, e-mail).
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:10px; align-items:flex-start;">
+                            <span style="font-size:1.1rem;">⚡</span>
+                            <div>
+                                <strong>15–45 min:</strong> Řešte ho s AI. Iterujte (zpřesňujte). Nebojte se ptát: "Vylepši to", "Co mi chybí?", "Zkrať to na polovinu".
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:10px; align-items:flex-start;">
+                            <span style="font-size:1.1rem;">💾</span>
+                            <div>
+                                <strong>45–60 min:</strong> Zapište si, co fungovalo. Uložte osvědčený prompt. Příště začnete tam, kde jste skončili.
+                            </div>
+                        </div>
+                    </div>
+
+                    <p style="margin-top:16px; font-size:0.88rem; color:var(--text-muted);">Po 4 týdnech Power Hours budete mít <strong>4 ověřené AI workflow</strong> a jistotu, že vám to šetří čas. A přitom jste investovali jen 4 hodiny.</p>
                 </div>
 
                 <div class="tip-box">
